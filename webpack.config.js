@@ -58,6 +58,14 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      components: path.join(__dirname, "src/components"),
+      modals: path.join(__dirname, "src/models"),
+      routes: path.join(__dirname, "src/routes"),
+      configs: path.join(__dirname, "src/configs")
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
