@@ -3,5 +3,4 @@ import ReactDom from "react-dom";
 import React from "react";
 import Login from "./components/Login";
 
-console.info(Login);
 ReactDom.render(<Login />, document.getElementById("root"));

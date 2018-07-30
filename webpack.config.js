@@ -1,18 +1,23 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const webpack = require("webpack");
+
+const HOT_SCRIPT = `webpack-hot-middleware/client?path=http://i.reactjs.com/__webpack_hmr&timeout=20000&reload=true`;
 
 module.exports = {
   mode: "development",
   entry: {
-    app: path.join(__dirname, "src/app.js"),
-    about: path.join(__dirname, "src/about.js")
+    app: [path.join(__dirname, "src/app.js"), HOT_SCRIPT],
+    about: [path.join(__dirname, "src/about.js"), HOT_SCRIPT]
+    // app: [path.join(__dirname, "src/app.js")],
+    // about: [path.join(__dirname, "src/about.js")]
   },
   output: {
     filename: ["name"].js,
-    path: path.join(__dirname, "dist")
-    // publicPath: path.join(__dirname)
+    publicPath: "/"
   },
+  devtool: "#source-map",
   module: {
     rules: [
       {
@@ -84,6 +89,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };
