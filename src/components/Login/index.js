@@ -2,17 +2,7 @@ import React from "react";
 import "./style.less";
 
 export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.submitHandler = submitHandler.bind(this);
-  }
-
-  // submitHandler(event) {
-  //   console.info(event);
-  // }
-
-  // submitHandler = () => {};
-  function submitHandler(event) {};
+  submitHandler = () => {};
 
   render() {
     return (
