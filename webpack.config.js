@@ -2,6 +2,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const webpack = require("webpack");
+// post css plugins
+const postcssImport = require("postcss-import");
+const postcssNext = require("postcss-cssnext");
+const postNano = require("cssnano");
+// end of post css plugins
 
 const HOT_SCRIPT = `webpack-hot-middleware/client?path=http://i.reactjs.com/__webpack_hmr&timeout=20000&reload=true`;
 
@@ -10,8 +15,6 @@ module.exports = {
   entry: {
     app: [path.join(__dirname, "src/app.js"), HOT_SCRIPT],
     about: [path.join(__dirname, "src/about.js"), HOT_SCRIPT]
-    // app: [path.join(__dirname, "src/app.js")],
-    // about: [path.join(__dirname, "src/about.js")]
   },
   output: {
     filename: ["name"].js,
@@ -50,9 +53,9 @@ module.exports = {
             options: {
               ident: "postcss",
               plugins: loader => [
-                require("postcss-import")({ root: loader.resourcePath }),
-                require("postcss-cssnext")(),
-                require("cssnano")()
+                postcssImport({ root: loader.resourcePath }),
+                postcssNext(),
+                postNano()
               ]
             }
           }
