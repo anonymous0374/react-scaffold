@@ -11,7 +11,7 @@ export default class Login extends React.Component {
       <form onSubmit={this.submitHandler}>
         <div className="grid-container">
           <div className="grid-column">
-            <div className="v-align-center">Col 1</div>
+            <div className="v-align-center">Col 1!</div>
           </div>
           <div className="grid-column">
             <Button className="primary">Click Me</Button>
