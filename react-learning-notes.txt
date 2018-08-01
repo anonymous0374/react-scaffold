@@ -154,8 +154,8 @@ state, then compose them to make complex UIs.
     -> Fully controlled component
       this remove state from our component entirely.
     -> Fully uncontrolled component with a key
-    In real world applications, components can contain a mix of controlled and
-    uncontrolled behaviors. This is OK if each value has a clear source of
+    -> In real world applications, components can contain a mix of controlled
+    and uncontrolled behaviors. This is OK if each value has a clear source of
     truth. getDerivedStateFromProps(and derived state in general) is an
     advanced feature and should be used sparingly because of the complexity of
     data flow in real world scenarios.

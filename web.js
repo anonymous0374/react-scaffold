@@ -11,6 +11,7 @@
  * date: 2018-07-30
  */
 
+const path = require("path");
 const express = require("express");
 const webpack = require("webpack");
 const dev = require("webpack-dev-middleware");
@@ -29,6 +30,9 @@ app.use(
   })
 );
 app.use(hot(compiler));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 app.listen(PORT, () =>
   console.info(`Express web server is listening on port ${PORT}`)
