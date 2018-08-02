@@ -73,9 +73,11 @@ module.exports = {
   resolve: {
     alias: {
       components: path.join(__dirname, "src/components"),
-      modals: path.join(__dirname, "src/models"),
       routes: path.join(__dirname, "src/routes"),
-      configs: path.join(__dirname, "src/configs")
+      configs: path.join(__dirname, "src/configs"),
+      actions: path.join(__dirname, "src/actions"),
+      reducers: path.join(__dirname, "src/reducers"),
+      modals: path.join(__dirname, "src/models")
     }
   },
   plugins: [

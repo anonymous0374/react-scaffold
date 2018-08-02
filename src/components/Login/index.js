@@ -4,7 +4,13 @@ import "antd/dist/antd.css";
 import "./style.less";
 
 export default class Login extends React.Component {
-  submitHandler = () => {};
+  constructor(props) {
+    super(props);
+  }
+
+  submitHandler = (data) => {
+    
+  };
 
   render() {
     return (

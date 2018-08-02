@@ -1,7 +1,7 @@
 /**
  * the start point of the web application.
  * the use of this file:
- * 1 start Express.js http web server
+ * 1 start Express.js http web server with the following middlewares
  * 2 configure webpack-dev-middleware, which serve compiled files(in memory) to
  * the Express.js http web server
  * 3 configure webpack-hot-middleware, which connects webpack-dev-middle to the
