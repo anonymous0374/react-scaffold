@@ -1,7 +1,7 @@
 import ReactDom from "react-dom";
 import React from "react";
 import Login from "components/Login";
-import { createStore, combineReducers } from "redux";
+import { store } from "models/store";
 import authReducer from "reducers/auth";
 import "./index.css";
 
@@ -10,22 +10,12 @@ if (module.hot) {
   module.hot.accept();
 }
 
-const initialState = {
-  login: false
-};
-const store = createStore(combineReducers({ authReducer }), {
-  ...initialState
-});
-// const store = createStore(combineReducers({ authReducer }));
-
-class App extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Login store={store} />
-      </React.Fragment>
-    );
-  }
+function App() {
+  return (
+    <React.Fragment>
+      <Login store={store} />
+    </React.Fragment>
+  );
 }
 
 ReactDom.render(<App />, document.getElementById("root"));

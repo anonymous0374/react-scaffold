@@ -1,14 +1,12 @@
 import { LOGIN, LOGOUT } from "actions/auth";
+import { initialState } from "models/store";
 
-export default function authReducer(state = {}, action) {
-  let rtn = {};
+export default function authReducer(state = { ...initialState }, action) {
+  let rtn = { ...state };
   if (action.type === LOGIN) {
-    const { type, ...rest } = action;
-    rtn = { ...state, ...rest, login: true };
+    rtn = { ...state, ...action.payload, login: true };
   } else if (action.type === LOGOUT) {
-    rtn = { login: false };
-  } else {
-    rtn = state;
+    rtn = { ...state, login: false };
   }
 
   return rtn;

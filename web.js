@@ -30,9 +30,9 @@ app.use(
   })
 );
 app.use(hot(compiler));
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "index.html"));
+// });
 
 app.listen(PORT, () =>
   console.info(`Express web server is listening on port ${PORT}`)

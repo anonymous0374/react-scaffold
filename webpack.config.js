@@ -20,7 +20,7 @@ module.exports = {
     filename: ["name"].js,
     publicPath: "/"
   },
-  // devtool: "#source-map",
+  devtool: "#source-map",
   module: {
     rules: [
       {
@@ -77,7 +77,7 @@ module.exports = {
       configs: path.join(__dirname, "src/configs"),
       actions: path.join(__dirname, "src/actions"),
       reducers: path.join(__dirname, "src/reducers"),
-      modals: path.join(__dirname, "src/models")
+      models: path.join(__dirname, "src/models")
     }
   },
   plugins: [
