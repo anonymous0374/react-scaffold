@@ -1,11 +1,35 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: [col-1] 20% [col-2] 20% [col-3] 20% [col-4] 20% [col-5] 20% [col-end];
-}
-
-.v-align-center {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
+.login-form {
+  width: 400px;
+  padding: 20px 10px;
+  height: max-content;
+  background-color: #ddd;
+  opacity: 0.85;
+  h1.form-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: [col-1] 30% [col-2] 70% [col-end];
+    grid-template-rows: 40px;
+    .grid-title {
+      text-align: center;
+      font-weight: 500;
+    }
+    .grid-field {
+      width: 90%;
+    }
+  }
+  .foot-buttons {
+    margin-top: 15px;
+    text-align: center;
+    button {
+      width: 80px;
+    }
+    button:first-child {
+      margin-right: 20px;
+    }
+  }
 }

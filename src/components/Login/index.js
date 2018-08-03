@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input } from "antd";
+import { Button, Input, Form } from "antd";
 import { login, logout } from "actions/auth";
 import "antd/dist/antd.css";
 import "./style.less";
@@ -20,15 +20,25 @@ export default class Login extends React.Component {
   };
 
   textChangeHandler = (fieldName, fieldValue) => {
-    this.setState((prevState, props) => ({
+    this.setState(() => ({
       [fieldName]: fieldValue
     }));
   };
 
+  cancelHandler = () => {
+    this.setState(() => ({
+      userName: "",
+      password: ""
+    }));
+  };
+
   render() {
-    let { userName, password } = this.state;
+    const { userName, password } = this.state;
     return (
-      <form onSubmit={this.submitHandler}>
+      <form onSubmit={this.submitHandler} className="login-form">
+        <h1 className="form-title">
+          Welcome Login to Assets Management System
+        </h1>
         <div className="grid-container">
           <div className="grid-title">Username: </div>
           <div className="grid-field">
@@ -52,11 +62,12 @@ export default class Login extends React.Component {
               }}
             />
           </div>
-          <div>
-            <Button type="primary" htmlType="submit" className="primary">
-              Login
-            </Button>
-          </div>
+        </div>
+        <div className="foot-buttons">
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+          <Button onClick={this.cancelHandler}>Cancel</Button>
         </div>
       </form>
     );

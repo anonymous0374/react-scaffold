@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "node web.js"
+    "start": "nodemon web.js"
   },
   "dependencies": {
     "antd": "^3.7.3",
@@ -40,6 +40,7 @@
     "less": "^3.8.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.1",
+    "nodemon": "^1.18.3",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.6",

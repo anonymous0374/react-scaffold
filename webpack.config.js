@@ -18,9 +18,13 @@ module.exports = {
   },
   output: {
     filename: ["name"].js,
+    path: path.resolve(__dirname, "dist"), // for release only
     publicPath: "/"
   },
   devtool: "#source-map",
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {
