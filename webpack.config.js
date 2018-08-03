@@ -25,6 +25,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
+  watchOptions: {
+    aggregateTimeout: 300 // The default
+  },
   module: {
     rules: [
       {
