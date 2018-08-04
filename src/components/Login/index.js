@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, Form } from "antd";
+import { Button, Input, Form, Checkbox, Label } from "antd";
 import { login, logout } from "actions/auth";
 import { Redirect } from "react-router-dom";
 import "antd/dist/antd.css";
@@ -75,6 +75,13 @@ export default class Login extends React.Component {
                 this.textChangeHandler("password", event.target.value);
               }}
             />
+          </div>
+          <div className="grid-title" />
+          <div className="grid-field">
+            <Checkbox id="show" type="checkbox" />
+            <label htmlFor="show">Show Password</label>
+            <Checkbox id="remember" type="checkbox" />
+            <label htmlFor="remember">Remember Me</label>
           </div>
         </div>
         <div className="foot-buttons">
