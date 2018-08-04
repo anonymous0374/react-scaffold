@@ -1,7 +1,13 @@
 import ReactDom from "react-dom";
 import React from "react";
 import Auth from "routes/Auth";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import Assets from "routes/Assets";
 import { store } from "models/store";
 import "./index.less";
 
@@ -13,22 +19,22 @@ if (module.hot) {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    const { store } = this.props;
     this.state = store.getState();
     const that = this;
     store.subscribe(() => {
-      const {
-        auth: { login }
-      } = store.getState();
       that.setState(() => ({
         auth: {
-          login
+          login: store.getState().auth.login
         }
       }));
     });
   }
 
   render() {
+    const {
+      auth: { login }
+    } = this.state;
+    console.info("login in render: ", login);
     return (
       <div className="app">
         <Router>
@@ -36,8 +42,8 @@ class App extends React.Component {
             <Route
               path="/login"
               render={() =>
-                store.getState().auth.login ? (
-                  "welcome"
+                login ? (
+                  <Redirect to="/" />
                 ) : (
                   <div className="login">
                     <Auth store={store} />
@@ -47,20 +53,27 @@ class App extends React.Component {
             />
             <Route
               path="/"
+              exact
               render={() => {
-                const {
-                  auth: { login }
-                } = store.getState();
-                console.info("state updated! login: ", login);
-                const element = store.getState().auth.login ? (
+                const element = login ? (
                   <span>welcome</span>
                 ) : (
-                  <div className="login">
-                    <Auth store={store} login={login} />
-                  </div>
+                  <Redirect to="/login" />
                 );
                 return element;
               }}
+            />
+            <Route
+              path="/assets"
+              render={() =>
+                login ? (
+                  <Assets />
+                ) : (
+                  <div className="login">
+                    <Auth store={store} />
+                  </div>
+                )
+              }
             />
           </Switch>
         </Router>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Input, Form } from "antd";
 import { login, logout } from "actions/auth";
+import { Redirect } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./style.less";
 
@@ -10,8 +11,19 @@ export default class Login extends React.Component {
 
     this.state = {
       userName: "",
-      password: ""
+      password: "",
+      gotoAssets: false
     };
+
+    const { store } = props;
+    store.subscribe(() => {
+      const { auth, assets } = store.getState();
+      if (auth.login) {
+        this.setState(() => ({
+          gotoAssets: true
+        }));
+      }
+    });
   }
 
   submitHandler = event => {
@@ -28,12 +40,13 @@ export default class Login extends React.Component {
   cancelHandler = () => {
     this.setState(() => ({
       userName: "",
-      password: ""
+      password: "",
+      gotoAssets: false
     }));
   };
 
   render() {
-    const { userName, password } = this.state;
+    const { userName, password, gotoAssets } = this.state;
     return (
       <form onSubmit={this.submitHandler} className="login-form">
         <h1 className="form-title">
@@ -69,6 +82,7 @@ export default class Login extends React.Component {
           </Button>
           <Button onClick={this.cancelHandler}>Cancel</Button>
         </div>
+        {gotoAssets ? <Redirect to="/assets" /> : null}
       </form>
     );
   }

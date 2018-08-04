@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "nodemon web.js"
+    "start": "node web.js",
+    "start:n": "nodemon web.js"
   },
   "dependencies": {
     "antd": "^3.7.3",
