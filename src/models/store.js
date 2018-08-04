@@ -3,7 +3,7 @@ import authReducer from "reducers/auth";
 import assetsReducer from "reducers/assets";
 
 export const initialState = {
-  auth: { login: true, userName: null, password: null, remember: false },
+  auth: { login: false, userName: null, password: null, remember: false },
   assets: null
 };
 export const store = createStore(

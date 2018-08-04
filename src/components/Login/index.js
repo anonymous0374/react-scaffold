@@ -12,7 +12,8 @@ export default class Login extends React.Component {
     this.state = {
       userName: "",
       password: "",
-      gotoAssets: false
+      gotoAssets: false,
+      showPassword: false
     };
 
     const { store } = props;
@@ -46,7 +47,7 @@ export default class Login extends React.Component {
   };
 
   render() {
-    const { userName, password, gotoAssets } = this.state;
+    const { userName, password, gotoAssets, showPassword } = this.state;
     return (
       <form onSubmit={this.submitHandler} className="login-form">
         <h1 className="form-title">
@@ -67,7 +68,7 @@ export default class Login extends React.Component {
           <div className="grid-title">Password: </div>
           <div className="grid-field">
             <Input
-              type="text"
+              type={showPassword ? "text" : "password"}
               placeholder="password"
               value={password}
               onChange={event => {
