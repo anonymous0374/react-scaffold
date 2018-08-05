@@ -1,16 +1,22 @@
 import React from "react";
 import AssetsList from "components/Assets/AssetsList";
-import AssetsDetail from "components/Assets/AssetsDetail";
 import { store } from "models/store";
 
 export default class Assets extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = [];
+    this.unsubscribe = store.subscribe(() => {
+      this.state = store.getState().assets;
+    });
+  }
+
   render() {
-    console.info(store.getState());
-    const list = [...store.getState().assets];
-    console.info("list: ", list);
+    const list = [...this.state];
+
     return (
       <React.Fragment>
-        <AssetsList store={store} list={list} />
+        <AssetsList list={list} />
       </React.Fragment>
     );
   }

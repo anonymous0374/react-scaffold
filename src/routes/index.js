@@ -10,21 +10,22 @@ import Assets from "routes/Assets";
 
 export default function Routes(props) {
   const { login } = props;
-  console.info("login in routes: ", login);
   return (
     <Router>
       <Switch>
         <Route
           path="/"
-          render={() => {
-            if (login) {
-              return <Assets />;
-            }
-            return <Auth />;
-          }}
+          exact
+          render={() =>
+            login ? <Redirect to="/assets" /> : <Redirect to="/login" />
+          }
         />
-        <Route path="/login" render={() => <Auth />} />
-        <Route path="/assets" render={() => <Assets />} />
+        <Route path="/login" exact render={() => <Auth />} />
+        <Route
+          path="/assets"
+          exact
+          render={() => (login ? <Assets /> : <Redirect to="/login" />)}
+        />
       </Switch>
     </Router>
   );

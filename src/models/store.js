@@ -10,7 +10,3 @@ export const store = createStore(
   combineReducers({ auth: authReducer, assets: assetsReducer }),
   initialState
 );
-export const unsubscribe = store.subscribe(() => {
-  console.info(`state change subscribed: `);
-  console.info(store.getState());
-});
