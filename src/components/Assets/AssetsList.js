@@ -36,7 +36,7 @@ export default class AssetsList extends React.Component {
     const columns = [
       { title: "Asset Name", dataIndex: "name", key: "name" },
       { title: "Location", dataIndex: "location", key: "location" },
-      { title: "Worth", dataIndex: "worth", key: "worth" },
+      { title: "Worth", dataIndex: "price", key: "worth" },
       { title: "Description", dataIndex: "description", key: "description" }
     ];
 

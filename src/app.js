@@ -13,9 +13,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = store.getState();
-    const that = this;
     store.subscribe(() => {
-      that.setState(() => ({
+      this.setState(() => ({
         auth: {
           ...store.getState().auth
         }
