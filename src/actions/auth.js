@@ -1,11 +1,24 @@
+import { initialState } from "models/store";
+import axios from "axios";
+
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export function login(payload) {
-  return {
-    type: LOGIN,
-    payload
-  };
+  // return {
+  //   type: LOGIN,
+  //   payload
+  // };
+
+  return (dispatch, getState) =>
+    getUserByName(payload.username).then(
+      res => {
+        console.info(res);
+      },
+      err => {
+        console.info(err);
+      }
+    );
 }
 
 export function logout(payload) {
@@ -13,4 +26,47 @@ export function logout(payload) {
     type: LOGOUT,
     payload
   };
+}
+
+export default function authReducer(state = { ...initialState.auth }, action) {
+  const rtn = { ...state };
+  switch (action.type) {
+    case LOGIN: {
+      return (dispatch, getState) =>
+        getUserByName(action.username).then(
+          res => {
+            console.info(res);
+          },
+          err => {
+            console.info(err);
+          }
+        );
+      break;
+    }
+    case LOGOUT: {
+      return (dispatch, getState) => {
+        dispatch(getUserByName(action.username)).then(
+          res => {
+            console.info(res);
+          },
+          rej => {
+            console.info(rej);
+          }
+        );
+      };
+      break;
+    }
+    default: {
+      return rtn;
+    }
+  }
+  return rtn;
+}
+
+function getUserByName(name) {
+  return axios.get("/ams/user", {
+    params: {
+      name
+    }
+  });
 }

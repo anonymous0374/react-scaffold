@@ -7,6 +7,8 @@ const postcssImport = require("postcss-import");
 const postcssNext = require("postcss-cssnext");
 const postNano = require("cssnano");
 // end of post css plugins
+const EXPRESS_PORT = 3001;
+const API_PREFIX = `/ams`;
 
 const HOT_SCRIPT = `webpack-hot-middleware/client?path=http://i.reactjs.com/__webpack_hmr&timeout=20000&reload=true`;
 
@@ -24,6 +26,14 @@ module.exports = {
   devtool: "#source-map",
   devServer: {
     historyApiFallback: true
+    /*
+    proxy: {
+      "/ams": {
+        target: `http://localhost:${EXPRESS_PORT}`,
+        pathRewrite: { "^/ams": "" },
+        changeOrigin: true
+      }
+    } */
   },
   watchOptions: {
     aggregateTimeout: 300 // The default
