@@ -5,13 +5,8 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export function login(payload) {
-  // return {
-  //   type: LOGIN,
-  //   payload
-  // };
-
   return (dispatch, getState) =>
-    getUserByName(payload.username).then(
+    getUserByName(payload.userName).then(
       res => {
         console.info(res);
       },
@@ -30,10 +25,11 @@ export function logout(payload) {
 
 export default function authReducer(state = { ...initialState.auth }, action) {
   const rtn = { ...state };
+  console.info(action);
   switch (action.type) {
     case LOGIN: {
       return (dispatch, getState) =>
-        getUserByName(action.username).then(
+        getUserByName(action.userName).then(
           res => {
             console.info(res);
           },
