@@ -1,20 +1,11 @@
 import { LOGIN, LOGOUT } from "actions/auth";
 import { initialState } from "models/store";
-import axios from "axios";
 
 export default function authReducer(state = { ...initialState.auth }, action) {
   const rtn = { ...state };
   switch (action.type) {
     case LOGIN: {
-      return (dispatch, getState) =>
-        getUserByName(action.username).then(
-          res => {
-            console.info(res);
-          },
-          err => {
-            console.info(err);
-          }
-        );
+      return { ...state, ...action.payload };
       break;
     }
     case LOGOUT: {
@@ -35,12 +26,4 @@ export default function authReducer(state = { ...initialState.auth }, action) {
     }
   }
   return rtn;
-}
-
-function getUserByName(name) {
-  axios.get("/user", {
-    params: {
-      name
-    }
-  });
 }

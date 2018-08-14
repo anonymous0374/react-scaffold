@@ -9,6 +9,12 @@ export function login(payload) {
     getUserByName(payload.userName).then(
       res => {
         console.info(res);
+        if (Array.isArray(res.data) && res.data.length === 1) {
+          dispatch({
+            type: LOGIN,
+            payload: { userName: res.data.name, login: true }
+          });
+        }
       },
       err => {
         console.info(err);
