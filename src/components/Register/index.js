@@ -5,10 +5,25 @@ import "./style.less";
 const FormItem = Form.Item;
 
 class RegisterForm extends Component {
-  submitHandler = data => {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  submitHandler = e => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.info("data to submit: ", values);
+      }
+    });
+  };
+
+  cancelHandler = e => {
+    this.props.form.resetFields();
+  };
 
   render() {
-    console.info(this);
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: {
@@ -95,12 +110,16 @@ class RegisterForm extends Component {
               <Button
                 type="primary"
                 style={{ float: "right", marginRight: "10px" }}
+                onClick={this.submitHandler}
               >
                 Submit
               </Button>
             </Col>
             <Col span={14}>
-              <Button style={{ float: "left", marginLeft: "10px" }}>
+              <Button
+                style={{ float: "left", marginLeft: "10px" }}
+                onClick={this.cancelHandler}
+              >
                 Let me Think for a Moment
               </Button>
             </Col>
