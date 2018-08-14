@@ -94,14 +94,16 @@ module.exports = {
       configs: path.join(__dirname, "src/configs"),
       actions: path.join(__dirname, "src/actions"),
       reducers: path.join(__dirname, "src/reducers"),
-      models: path.join(__dirname, "src/models")
+      models: path.join(__dirname, "src/models"),
+      services: path.join(__dirname, "src/services")
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.join(__dirname, "src/index.html"),
-      chunks: ["app"]
+      chunks: ["app"],
+      favicon: path.join(__dirname, "public/images/favicon.ico")
     }),
     new HtmlWebpackPlugin({
       filename: "about.html",

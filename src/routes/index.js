@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Auth from "routes/Auth";
 import Assets from "routes/Assets";
+import Register from "routes/Register";
 
 export default function Routes(props) {
   const { login } = props;
@@ -26,6 +27,7 @@ export default function Routes(props) {
           exact
           render={() => (login ? <Assets /> : <Redirect to="/login" />)}
         />
+        <Route path="/register" component={Register} />
       </Switch>
     </Router>
   );
