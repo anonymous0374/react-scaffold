@@ -86,15 +86,15 @@ state, then compose them to make complex UIs.
     b. Phrases:
       > Mounting
         >> constructor()
-      >> static getDerivedStateFromProps()
-      >> render()
-      >> componentDidMount()
-      > Updating
         >> static getDerivedStateFromProps()
-      >> shouldComponentUpdate()
-      >> render()
-      >> getSnapshotBeforeUpdate()
-      >> componentDidUpdate()
+        >> render()
+        >> componentDidMount()
+        > Updating
+        >> static getDerivedStateFromProps()
+        >> shouldComponentUpdate()
+        >> render()
+        >> getSnapshotBeforeUpdate()
+        >> componentDidUpdate()
       > Unmounting
         >> componentWillUnmount()
       > Error handling
