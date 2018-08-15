@@ -5,13 +5,13 @@
   React is a JS library for building User Interfaces.
 
 2. Characteristics of React?
-  (1) Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
+  - Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
 the web application.
-  (2) It's Component-Based, build encapsulated components that manage their own
+  - It's Component-Based, build encapsulated components that manage their own
 state, then compose them to make complex UIs.
 
 3. Essential Concepts of React
-  (1) JSX and React Element
+  - JSX and React Element
     a. Why JSX?
       > React embraces the fact that rendering logic is inherently coupled with
     other UI logic: how events are handled, how the state changes over time,
@@ -38,7 +38,7 @@ state, then compose them to make complex UIs.
       	>> React elements are immutable. Once you create an element, you can't
       	change its children or attributes. An element is like a single frame in
       	a movie: it represents the UI at a certain point in time.
-  (2) Component and HOC(High Order Components)
+  - Component and HOC(High Order Components)
     a. Why Components
       > React embraces the fact that rendering logic is inherently coupled with
       UI logic: how events are handled, how the state changes over time, and
