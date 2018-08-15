@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Input, Row, Col, Card, Icon } from "antd";
+import { Form, Button, Input, Row, Col, Card, Icon, Tooltip } from "antd";
 import "./style.less";
 
 const FormItem = Form.Item;
@@ -46,7 +46,7 @@ class RegisterForm extends Component {
               rules: [{ required: true, message: "Please input a User Name" }]
             })(
               <Input
-                placeHolder="User Name"
+                placeholder="User Name"
                 prefix={
                   <Icon type="user" style={{ color: "rgba(0.0.0,.25)" }} />
                 }
@@ -57,23 +57,22 @@ class RegisterForm extends Component {
             {getFieldDecorator("email", {
               rules: [
                 {
-                  required: true,
-                  message:
-                    "Please confirm your email address so that we can contact you"
-                },
-                {
                   type: "email",
                   message: "Sorry, the email address is invalid"
                 }
               ]
-            })(<Input placeHolder="Your Email Address" />)}
+            })(
+              <Tooltip title="We'll Send you Valuable Emails" placement="right">
+                <Input placeholder="Your Email Address" />
+              </Tooltip>
+            )}
           </FormItem>
           <FormItem label="Password" {...formItemLayout}>
             {getFieldDecorator("password", {
               rules: [{ required: true, message: "Please input a Password" }]
             })(
               <Input
-                placeHolder="Password"
+                placeholder="Password"
                 type="password"
                 prefix={
                   <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
@@ -88,7 +87,7 @@ class RegisterForm extends Component {
               ]
             })(
               <Input
-                placeHolder="Password"
+                placeholder="Password"
                 type="password"
                 prefix={
                   <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
@@ -100,7 +99,23 @@ class RegisterForm extends Component {
         <Card title="Your are Welcome to Provide some Other Infomation to US:">
           <FormItem label="Residential City" {...formItemLayout}>
             {getFieldDecorator("city")(
-              <Input placeHolder="City You Live in" />
+              <Tooltip title="We'll Keep it Private" placement="right">
+                <Input placeholder="Your Residential City" />
+              </Tooltip>
+            )}
+          </FormItem>
+          <FormItem label="Profession" {...formItemLayout}>
+            {getFieldDecorator("profession")(
+              <Tooltip title="We'll Keep it Private" placement="right">
+                <Input placeholder="Your Profession" />
+              </Tooltip>
+            )}
+          </FormItem>
+          <FormItem label="Gender" {...formItemLayout}>
+            {getFieldDecorator("gender")(
+              <Tooltip title="We'll Keep it Private" placement="right">
+                <Input placeholder="Your Gender" />
+              </Tooltip>
             )}
           </FormItem>
         </Card>

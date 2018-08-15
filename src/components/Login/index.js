@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Input, Form, Checkbox, Label } from "antd";
 import { login, logout } from "actions/auth";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { store } from "models/store";
 import "antd/dist/antd.css";
 import "./style.less";
@@ -101,6 +101,9 @@ export default class Login extends React.Component {
               Login
             </Button>
             <Button onClick={this.cancelHandler}>Cancel</Button>
+          </div>
+          <div className="register-link">
+            <Link to="/register">Don't have an Account? Click to Register</Link>
           </div>
           {gotoAssets ? <Redirect to="/assets" /> : null}
         </form>
