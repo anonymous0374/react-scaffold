@@ -1,16 +1,16 @@
-React Learnning Notes
+## React Learnning Notes
   by: j-sparrow, from 2018-07-17
 
-1 What is React?
+1. What is React?
   React is a JS library for building User Interfaces.
 
-2 Characteristics of React?
+2. Characteristics of React?
   (1) Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
 the web application.
   (2) It's Component-Based, build encapsulated components that manage their own
 state, then compose them to make complex UIs.
 
-3 Essential Concepts of React
+3. Essential Concepts of React
   (1) JSX and React Element
     a. Why JSX?
       > React embraces the fact that rendering logic is inherently coupled with
@@ -124,7 +124,7 @@ state, then compose them to make complex UIs.
     Virdual DOM update performance.
   (6) Optimizing Performances
 
-4 Advanced Concepts
+4. Advanced Concepts
   (1) Context
   (2) Forwarding Refs
   (3) HOC --> Higher Order Components
