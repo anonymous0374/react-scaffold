@@ -1,17 +1,16 @@
-## React Learnning Notes
-  by: j-sparrow, from 2018-07-17
+# React Learnning Notes
 
-1. What is React?
+## What is React?
   React is a JS library for building User Interfaces.
 
-2. Characteristics of React?
-  - Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
+## Characteristics of React?
+  1.  Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
 the web application.
-  - It's Component-Based, build encapsulated components that manage their own
+  2. It's Component-Based, build encapsulated components that manage their own
 state, then compose them to make complex UIs.
 
-3. Essential Concepts of React
-  - JSX and React Element
+## Essential Concepts of React
+  ### JSX and React Element
     a. Why JSX?
       > React embraces the fact that rendering logic is inherently coupled with
     other UI logic: how events are handled, how the state changes over time,
@@ -34,11 +33,11 @@ state, then compose them to make complex UIs.
       you want to see on the screen.
       > Unlike browser DOM elements:
         >> React elements are plain objects, they're cheap to create
-      	>> React DOM takes care of updating the DOM to match the React elements.
-      	>> React elements are immutable. Once you create an element, you can't
-      	change its children or attributes. An element is like a single frame in
-      	a movie: it represents the UI at a certain point in time.
-  - Component and HOC(High Order Components)
+        >> React DOM takes care of updating the DOM to match the React elements.
+        >> React elements are immutable. Once you create an element, you can't
+        change its children or attributes. An element is like a single frame in
+        a movie: it represents the UI at a certain point in time.
+  ### Component and HOC(High Order Components)
     a. Why Components
       > React embraces the fact that rendering logic is inherently coupled with
       UI logic: how events are handled, how the state changes over time, and
@@ -56,7 +55,7 @@ state, then compose them to make complex UIs.
       > All components takes in props, and return React elements.
       > All components must act like pure functions with respect to their
       props.
-  (3) Component instance variables: State and Props, and the Data Flows Down
+  ### Component instance variables: State and Props, and the Data Flows Down
     a. What are State and Props
       > Props are the input of a Component, Component outputs an React Element
       based on the Props. Component acts as pure functions with respect to the
@@ -81,26 +80,26 @@ state, then compose them to make complex UIs.
       > To fix that, use another form of setState:
         this.setState((prevState, props) => newState)
       > State updates ARE merged.
-  (3) Component Lifecycle, Refs and DOM
+  ### Component Lifecycle, Refs and DOM
     a. A Component has its own lifecycle: birth(construction), growth(update),
     and death(destroy)
     b. Phrases:
       > Mounting
         >> constructor()
-	>> static getDerivedStateFromProps()
-	>> render()
-	>> componentDidMount()
+  >> static getDerivedStateFromProps()
+  >> render()
+  >> componentDidMount()
       > Updating
         >> static getDerivedStateFromProps()
-	>> shouldComponentUpdate()
-	>> render()
-	>> getSnapshotBeforeUpdate()
-	>> componentDidUpdate()
+  >> shouldComponentUpdate()
+  >> render()
+  >> getSnapshotBeforeUpdate()
+  >> componentDidUpdate()
       > Unmounting
         >> componentWillUnmount()
       > Error handling
         >> componentDidCatch()
-  (4) Events, Forms(Controlled / uncontrolled components)
+  ### Events, Forms(Controlled / uncontrolled components)
     a. Events are described(declaraed) within JSX expressions,just change the
     format a bit: onclick="someHandler" --> onClick={this.props.someHandler}
     b. React form:
@@ -115,42 +114,41 @@ state, then compose them to make complex UIs.
       is called a "controlled component".
       > With a controlled component, every state mutation will have an
       associated handler function.
-
-  (5) Lists and Keys, and DOM Comparasions(Diff and Update)
+  ### Lists and Keys, and DOM Comparasions(Diff and Update)
     a. Keys help React identify which items have changed, are added, or are
     removed. Keys should be given to the elements inside the array to give the
     elements a stable identity.
     b. Keys are used for Virtual DOM Comparasion Algorithem, it's critical to
     Virdual DOM update performance.
-  (6) Optimizing Performances
+  ### Optimizing Performances
 
-4. Advanced Concepts
-  (1) Context
-  (2) Forwarding Refs
-  (3) HOC --> Higher Order Components
+## Advanced Concepts
+  ### Context
+  ### Forwarding Refs
+  ### HOC --> Higher Order Components
     A HOC composes the original component by wrapping it in a container
   component. A HOC is a pure function with zero side-effects.
-  (4) getDerivedStateFromProps:
-    Controlled Components vs Uncontrolled Components
+  ### getDerivedStateFromProps
+    a. Controlled Components vs Uncontrolled Components
     The terms "controlled" and "uncontrolled" refer to where component's data
-  lives. Data passed in as props can be thought of as controlled(because the
-  parent component controls that data). Data that exists only in internal
-  state can be thought of as uncontrolled(because the parent can't directly
-  change it).
-    The most common mistake with derived state is mixing the two: props and
-  state. When a derived state value is also updated by setState calls, there
-  isn't a single source of truth for the data:
-    (1) the state is overridden only when the prop changes, or
-    (2) the state is fully managed by the component
-    Problems arise when any of the two constraints are broken, and they
-  typically comes in two forms.
-    -> Unconditionally copying props to state
+    lives. Data passed in as props can be thought of as controlled(because the
+    parent component controls that data). Data that exists only in internal
+    state can be thought of as uncontrolled(because the parent can't directly
+    change it).
+    b. The most common mistake with derived state is mixing the two: props and
+    state. When a derived state value is also updated by setState calls, there
+    isn't a single source of truth for the data:
+      (1) the state is OVERRIDDEN only when the prop changes, or
+      (2) the state is fully managed by the component
+    c. Problems arise when any of the two constraints are broken, and they
+    typically comes in two forms.
+    - Unconditionally copying props to state
       Doing so will cause state udpates to be lost.
-    -> Modify state when prop change
+    - Modify some OTHER state when prop change --> compare to b(1)
       You have too many prop to watch and compare. Worse is when the prop does
     remain and you want update other state. This design is fundamentally
     flawed, and it's also an easy mistake to make.
-    The solution?
+    d. The solution?
     -> Fully controlled component
       this remove state from our component entirely.
     -> Fully uncontrolled component with a key
