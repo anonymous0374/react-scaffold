@@ -5,12 +5,17 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export function login(payload) {
-  const { userName, password } = payload;
+  let { userName, password } = payload;
+  userName = userName ? userName.trim() : "";
+  password = password ? password.trim() : "";
   return (dispatch, getState) =>
     loginAPI(userName, password).then(
       res => {
-        const { data } = res;
-        if (data && data.code === 0) {
+        const {
+          data = {},
+          data: { code, msg }
+        } = res;
+        if (code && code === 0) {
           dispatch({
             type: LOGIN,
             payload: { userName, login: true }
@@ -18,7 +23,7 @@ export function login(payload) {
         } else {
           dispatch({
             type: LOGIN,
-            payload: { userName: null, login: false }
+            payload: { userName: null, login: false, msg }
           });
         }
       },

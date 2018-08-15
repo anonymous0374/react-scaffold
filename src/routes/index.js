@@ -10,7 +10,7 @@ import Assets from "routes/Assets";
 import Register from "routes/Register";
 
 export default function Routes(props) {
-  const { login } = props;
+  const { login, userName, msg } = props;
   return (
     <Router>
       <Switch>
@@ -21,7 +21,7 @@ export default function Routes(props) {
             login ? <Redirect to="/assets" /> : <Redirect to="/login" />
           }
         />
-        <Route path="/login" exact render={() => <Auth />} />
+        <Route path="/login" exact render={() => <Auth msg={msg} />} />
         <Route
           path="/assets"
           exact

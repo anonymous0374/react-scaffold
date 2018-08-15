@@ -9,8 +9,8 @@ const postNano = require("cssnano");
 // end of post css plugins
 const EXPRESS_PORT = 3001;
 const API_PREFIX = `/ams`;
-
-const HOT_SCRIPT = `webpack-hot-middleware/client?path=http://i.reactjs.com/__webpack_hmr&timeout=20000&reload=true`;
+const DOMAIN_NAME = "ams.com";
+const HOT_SCRIPT = `webpack-hot-middleware/client?path=http://${DOMAIN_NAME}/__webpack_hmr&timeout=20000&reload=true`;
 
 module.exports = {
   mode: "development",

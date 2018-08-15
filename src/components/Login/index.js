@@ -48,6 +48,7 @@ export default class Login extends React.Component {
 
   render() {
     const { userName, password, gotoAssets, showPassword } = this.state;
+    const { msg } = this.props;
     return (
       <div className="login">
         <form onSubmit={this.submitHandler} className="login-form">
@@ -94,6 +95,7 @@ export default class Login extends React.Component {
                 style={{ marginLeft: "5px" }}
               />
               <label htmlFor="remember">Remember Me</label>
+              {msg ? <div className="error-message">{msg}</div> : null}
             </div>
           </div>
           <div className="foot-buttons">

@@ -24,12 +24,12 @@ class App extends React.Component {
 
   render() {
     const {
-      auth: { login }
+      auth: { login, userName, msg }
     } = this.state;
 
     return (
       <div className="app">
-        <Routes login={login} />
+        <Routes login={login} userName={userName} msg={msg} />
       </div>
     );
   }

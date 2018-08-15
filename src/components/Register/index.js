@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Input, Row, Col, Card, Icon, Tooltip } from "antd";
+import { register } from "actions/register";
+import { store } from "models/store";
 import "./style.less";
 
 const FormItem = Form.Item;
@@ -15,6 +17,18 @@ class RegisterForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.info("data to submit: ", values);
+        const { userName, password, email, city, profession, gender } = values;
+        const basicInfo = {
+          userName,
+          password,
+          email
+        };
+        const extraInfo = {
+          city,
+          gender,
+          profession
+        };
+        store.dispatch(register({ basicInfo, extraInfo }));
       }
     });
   };
@@ -62,9 +76,10 @@ class RegisterForm extends Component {
                 }
               ]
             })(
-              <Tooltip title="We'll Send you Valuable Emails" placement="right">
-                <Input placeholder="Your Email Address" />
-              </Tooltip>
+              <Input
+                placeholder="Your Email Address"
+                title="We'll Send you Valuable Emails"
+              />
             )}
           </FormItem>
           <FormItem label="Password" {...formItemLayout}>
@@ -87,8 +102,9 @@ class RegisterForm extends Component {
               ]
             })(
               <Input
-                placeholder="Password"
+                placeholder="Please type the Password again"
                 type="password"
+                title="Two passwords must be identical"
                 prefix={
                   <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
@@ -99,23 +115,23 @@ class RegisterForm extends Component {
         <Card title="Your are Welcome to Provide some Other Infomation to US:">
           <FormItem label="Residential City" {...formItemLayout}>
             {getFieldDecorator("city")(
-              <Tooltip title="We'll Keep it Private" placement="right">
-                <Input placeholder="Your Residential City" />
-              </Tooltip>
+              <Input
+                placeholder="Your Residential City"
+                title="We'll Keep it Private"
+              />
             )}
           </FormItem>
           <FormItem label="Profession" {...formItemLayout}>
             {getFieldDecorator("profession")(
-              <Tooltip title="We'll Keep it Private" placement="right">
-                <Input placeholder="Your Profession" />
-              </Tooltip>
+              <Input
+                placeholder="Your Profession"
+                title="We'll Keep it Private"
+              />
             )}
           </FormItem>
           <FormItem label="Gender" {...formItemLayout}>
             {getFieldDecorator("gender")(
-              <Tooltip title="We'll Keep it Private" placement="right">
-                <Input placeholder="Your Gender" />
-              </Tooltip>
+              <Input placeholder="Your Gender" title="We'll Keep it Private" />
             )}
           </FormItem>
         </Card>
