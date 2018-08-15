@@ -1,0 +1,10 @@
+1. Redux
+  - Why Redux
+  - What is Redux
+  - How it Works
+  - Any Alternatives?
+2. React-redux Package
+  - Why React-redux
+  - How it works
+  - Controlled components v.s. uncontrolled components
+---

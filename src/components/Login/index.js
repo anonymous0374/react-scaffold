@@ -95,8 +95,9 @@ export default class Login extends React.Component {
                 style={{ marginLeft: "5px" }}
               />
               <label htmlFor="remember">Remember Me</label>
-              {msg ? <div className="error-message">{msg}</div> : null}
             </div>
+            <div />
+            {msg ? <div className="error-message">{msg}</div> : null}
           </div>
           <div className="foot-buttons">
             <Button type="primary" htmlType="submit">
