@@ -10,32 +10,14 @@ if (module.hot) {
   module.hot.accept();
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
-    store.subscribe(() => {
-      this.setState(() => ({
-        auth: {
-          ...store.getState().auth
-        }
-      }));
-    });
-  }
-
-  render() {
-    const {
-      auth: { login, userName, msg }
-    } = this.state;
-
-    return (
-      <Provider store={store}>
-        <div className="app">
-          <Routes login={login} userName={userName} msg={msg} />
-        </div>
-      </Provider>
-    );
-  }
+function App() {
+  return (
+    <Provider store={store}>
+      <div className="app">
+        <Routes />
+      </div>
+    </Provider>
+  );
 }
 
 ReactDom.render(<App store={store} />, document.getElementById("root"));

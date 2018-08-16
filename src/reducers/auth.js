@@ -1,28 +1,35 @@
 import { LOGIN, LOGOUT } from "actions/auth";
 import { initialState } from "models/store";
 
-export default function authReducer(state = { ...initialState.auth }, action) {
-  const rtn = { ...state };
+export default function authReducer(state, action) {
+  let rtn = { ...state };
   switch (action.type) {
     case LOGIN: {
-      return { ...state, ...action.payload };
-      break;
-    }
-    case LOGOUT: {
-      return (dispatch, getState) => {
-        dispatch(getUserByName(action.username)).then(
-          res => {
-            console.info(res);
-          },
-          rej => {
-            console.info(rej);
-          }
-        );
+      const {
+        name,
+        email,
+        city,
+        gender,
+        profession,
+        authenticated
+      } = action.payload;
+      rtn = {
+        ...state,
+        name,
+        email,
+        city,
+        gender,
+        profession,
+        authenticated
       };
       break;
     }
+    case LOGOUT: {
+      rtn = { ...state, ...action.payload };
+      break;
+    }
     default: {
-      return rtn;
+      // do nothing
     }
   }
   return rtn;

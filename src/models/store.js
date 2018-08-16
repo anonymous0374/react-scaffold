@@ -6,9 +6,9 @@ import assetsReducer from "reducers/assets";
 import registerReducer from "reducers/register";
 
 export const initialState = {
-  auth: { login: false, userName: null, password: null, remember: false },
+  auth: { authenticated: false, name: null, password: null, remember: false },
   user: {
-    userName: null,
+    name: null,
     email: null,
     city: null,
     profession: null,

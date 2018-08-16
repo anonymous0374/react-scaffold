@@ -5,25 +5,26 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export function login(payload) {
-  let { userName, password } = payload;
-  userName = userName ? userName.trim() : "";
+  let { name, password } = payload;
+  name = name ? name.trim() : "";
   password = password ? password.trim() : "";
+
   return (dispatch, getState) =>
-    loginAPI(userName, password).then(
+    loginAPI(name, password).then(
       res => {
         const {
           data = {},
-          data: { code, msg }
+          data: { code, msg, user = {} }
         } = res;
-        if (code && code === 0) {
+        if (!isNaN(code) && code === 0) {
           dispatch({
             type: LOGIN,
-            payload: { userName, login: true }
+            payload: { ...user, authenticated: true, msg }
           });
         } else {
           dispatch({
             type: LOGIN,
-            payload: { userName: null, login: false, msg }
+            payload: { name: null, authenticated: false, msg }
           });
         }
       },

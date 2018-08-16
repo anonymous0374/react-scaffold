@@ -5,30 +5,40 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import { connect } from "react-redux";
 import Auth from "routes/Auth";
 import Assets from "routes/Assets";
 import Register from "routes/Register";
 
-export default function Routes(props) {
-  const { login, userName, msg } = props;
+function Routes(props) {
+  const { auth } = props;
   return (
     <Router>
       <Switch>
+        <Route path="/" exact render={() => <Redirect to="/assets" />} />
         <Route
-          path="/"
+          path="/login"
           exact
-          render={() =>
-            login ? <Redirect to="/assets" /> : <Redirect to="/login" />
-          }
+          render={() => (auth.authenticated ? <Auth /> : <Auth />)}
         />
-        <Route path="/login" exact render={() => <Auth msg={msg} />} />
+        } />
         <Route
           path="/assets"
           exact
-          render={() => (login ? <Assets /> : <Redirect to="/login" />)}
+          render={() => (auth.authenticated ? <Assets /> : <Auth />)}
         />
-        <Route path="/register" component={Register} />
+        <Route
+          path="/register"
+          exact
+          render={() => (auth.authenticated ? <Register /> : <Auth />)}
+        />
       </Switch>
     </Router>
   );
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Routes);

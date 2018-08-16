@@ -12,13 +12,12 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      userName: "",
+      name: "",
       password: "",
-      gotoAssets: false,
       showPassword: false
     };
 
-    /*
+    /* use connect() instead of store.subscribe directly
     store.subscribe(() => {
       const { auth, assets } = store.getState();
       if (auth.login) {
@@ -31,9 +30,10 @@ class Login extends React.Component {
   }
 
   submitHandler = event => {
+    const { login } = this.props;
     event.preventDefault();
     // store.dispatch(login(this.state));
-    this.props.login(this.state);
+    login(this.state);
   };
 
   textChangeHandler = (fieldName, fieldValue) => {
@@ -44,15 +44,17 @@ class Login extends React.Component {
 
   cancelHandler = () => {
     this.setState(() => ({
-      userName: "",
+      name: "",
       password: "",
-      gotoAssets: false
+      authenticated: false,
+      showPassword: false
     }));
   };
 
   render() {
-    const { userName, password, gotoAssets, showPassword } = this.state;
-    const { msg } = this.props;
+    const { name, password, showPassword } = this.state;
+    const { msg, auth } = this.props;
+
     return (
       <div className="login">
         <form onSubmit={this.submitHandler} className="login-form">
@@ -60,14 +62,14 @@ class Login extends React.Component {
             Welcome Login to Assets Management System
           </h1>
           <div className="grid-container">
-            <div className="grid-title">Username: </div>
+            <div className="grid-title">name: </div>
             <div className="grid-field">
               <Input
                 type="text"
                 placeholder="user name"
-                value={userName}
+                value={name}
                 onChange={event => {
-                  this.textChangeHandler("userName", event.target.value);
+                  this.textChangeHandler("name", event.target.value);
                 }}
               />
             </div>
@@ -116,7 +118,7 @@ class Login extends React.Component {
           <div className="register-link">
             <Link to="/register">Don't have an Account? Click to Register</Link>
           </div>
-          {gotoAssets ? <Redirect to="/assets" /> : null}
+          {auth && auth.authenticated ? <Redirect to="/assets" /> : null}
         </form>
       </div>
     );

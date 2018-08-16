@@ -1,32 +1,32 @@
 export const ADD_ASSET = "ADD_ASSET";
 export const UPDATE_ASSET = "UPDATE_ASSET";
 export const GET_ASSETS = "GET_ASSETS";
-export const REMOVE_ASSET = "REMOVE_ASSET";
+export const REMOVE_ASSETS = "REMOVE_ASSETS";
 
-export function addAsset(payload) {
+export function add(payload) {
   return {
     type: ADD_ASSET,
     payload
   };
 }
 
-export function updateAsset(payload) {
+export function update(payload) {
   return {
-    type: ADD_ASSET,
+    type: UPDATE_ASSET,
     payload
   };
 }
 
 export function getAssets(payload) {
   return {
-    type: ADD_ASSET,
+    type: GET_ASSETS,
     payload
   };
 }
 
-export function removeAsset(payload) {
+export function removeAssets(payload) {
   return {
-    type: ADD_ASSET,
+    type: REMOVE_ASSETS,
     payload
   };
 }
