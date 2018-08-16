@@ -13,17 +13,24 @@ state, then compose them to make complex UIs.
   ### JSX and React Element
     a. Why JSX?
       > React embraces the fact that rendering logic is inherently coupled with
-    other UI logic: how events are handled, how the state changes over time,
-    and how the data is prepared for display.
+    other UI logic:
+        >> how events are handled
+        >> how the state changes over time
+        >> and how the data is prepared for display
       > Instead of separates technologies by putting markup and logic in
     separate files, JSX itself can express UI(View), Behavior(Events) and
-    State(State, Props) altogether.
+    State(State) altogether. (JSX looks like both HTML and JavaScript).
       > React Components are built on top of JSX.
       > Since JSX contains information on all View / Events / State, JSX codes
-    are easily get verbose.
+    are easily get verbose(It works as both HTML and JavaScript).
     b. What is JSX?
-      > JSX has its own syntax to remember, e.g.:
+      > JSX is a syntax extension to JavaScript
+      > JSX can look like both HTML and JavaScript, but it's neither of them.
+        e.g.:
+        ```JavaScript
         const element = <img src={user.avatarUrl}></img>
+        <MyComponent props={props} />
+        ```
       > JSX compiles into React.createElement() calls.
       > After compilation, JSX evaluates to JavaScript objects, this means that
       you can use JSX inside of if statements and for loops, assign it to
@@ -55,23 +62,29 @@ state, then compose them to make complex UIs.
       > All components takes in props, and return React elements.
       > All components must act like pure functions with respect to their
       props.
-  ### Component instance variables: State and Props, and the Data Flows Down
+  ### Component instance variables: State and Props, the Data Flows ONE-WAY Down
     a. What are State and Props
       > Props are the input of a Component, Component outputs an React Element
       based on the Props. Component acts as pure functions with respect to the
       props.
-      > State "owns" the State. Neither parent nor child components can know if
-      a certain component is stateful or stateless, and they shouldn't care
-      whether it is defined as a function or a class --> this is why state is
-      often called local or encapsulated.
-    b. The Data Flow in React is often called a "top-down" or "unidirectional"
+      > Component "owns" the State. Neither parent nor child components can know
+      if a certain component is stateful or stateless, and they shouldn't care
+      whether it is defined as a function or a class
+        --> this is why state is often called local or encapsulated.
+    b. Differences between State and Props
+      > Props are immutable, State are mutable
+      > Props represents business data, are usually to be saved to database
+      > State represents UI data(each state is like a 'Frame' of the app, it
+        represents UI interactivities), and are usually NOT to be saved to
+        database
+    c. The Data Flow in React is often called a "top-down" or "unidirectional"
     data flow. Any state is always owned by some specific component, and any
     data or UI derived from that state can only affect components "below" them
     in the tree.
-    c. If you imagine a component tree as a waterfall of props, each
+    d. If you imagine a component tree as a waterfall of props, each
     component's state is like an additional water source that joins it at an
     arbitrary point but also flows down.
-    d. Be careful with States
+    e. Be careful with States
       > Do NOT modify State directly --> use setState() instead
       > State Updates MAY be asynchronous --> React may batch multiple
       setState() calls into a single update for performance. --> because
@@ -85,16 +98,16 @@ state, then compose them to make complex UIs.
     and death(destroy)
     b. Phrases:
       > Mounting
-        >> constructor()
-        >> static getDerivedStateFromProps()
-        >> render()
-        >> componentDidMount()
+          >> constructor()
+          >> static getDerivedStateFromProps()
+          >> render()
+          >> componentDidMount()
         > Updating
-        >> static getDerivedStateFromProps()
-        >> shouldComponentUpdate()
-        >> render()
-        >> getSnapshotBeforeUpdate()
-        >> componentDidUpdate()
+          >> static getDerivedStateFromProps()
+          >> shouldComponentUpdate()
+          >> render()
+          >> getSnapshotBeforeUpdate()
+          >> componentDidUpdate()
       > Unmounting
         >> componentWillUnmount()
       > Error handling
@@ -125,6 +138,7 @@ state, then compose them to make complex UIs.
 ## Advanced Concepts
   ### Context
   ### Forwarding Refs
+  ### Refs and the DOM
   ### HOC --> Higher Order Components
     A HOC composes the original component by wrapping it in a container
     component. A HOC is a pure function with zero side-effects.
@@ -160,5 +174,31 @@ state, then compose them to make complex UIs.
     -> Specification of the getDerivedStateFromProp function:
       https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
 
+## Thinking in React
+  [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
+    This artical worths read a lot of times, and the principles and ideas should
+    considered carefully. Here are some key points of it:
+  ### Steps(in sequence) to build a React app
+  1. Break the UI design into component hirarachies
+  2. Build a STATIC VERSION of the app
+    --> which will NOT use state but props only
+    --> because states are the frames(interactivity) of the app, static app does
+     NOT have frames.
+  3. Identify the minimal(yet complete) representation(schema) of one UI State
+    --> app interactivity are represented by State
+    --> React is all about one-way data flow down the component hirarchy, so
+    identify which component owns what state is very important.
+  4. Add Inverse Data Flow
+    --> Remember React is all about one-way data flow down the componet.
+    --> Any state is always owned by some specific component, and any data or UI
+     derived from that state can only affect components "below" them in the
+     tree.
+    --> So when an interactivity(or event)of child want to cause state of the
+    siblings or parent to change, it needs some "hooks" from components which
+    are ancestors of its siblings or parents(thus to maintain the data one-way
+    flow down principle).
+    --> The "hooks" are functions from the "ancestor" component which mutates
+    the state of itself, and calls this.setState() and that causes itself and
+    its decedent to re-render.
 
 
