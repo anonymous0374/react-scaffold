@@ -1,5 +1,6 @@
 import ReactDom from "react-dom";
 import React from "react";
+import { Provider } from "react-redux";
 import { store } from "models/store";
 import Routes from "routes";
 import "./index.less";
@@ -28,9 +29,11 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="app">
-        <Routes login={login} userName={userName} msg={msg} />
-      </div>
+      <Provider store={store}>
+        <div className="app">
+          <Routes login={login} userName={userName} msg={msg} />
+        </div>
+      </Provider>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Button, Input, Form, Checkbox, Label } from "antd";
 import { login, logout } from "actions/auth";
 import { Redirect, Link } from "react-router-dom";
@@ -6,7 +7,7 @@ import { store } from "models/store";
 import "antd/dist/antd.css";
 import "./style.less";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,6 +18,7 @@ export default class Login extends React.Component {
       showPassword: false
     };
 
+    /*
     store.subscribe(() => {
       const { auth, assets } = store.getState();
       if (auth.login) {
@@ -25,11 +27,13 @@ export default class Login extends React.Component {
         }));
       }
     });
+    */
   }
 
   submitHandler = event => {
     event.preventDefault();
-    store.dispatch(login(this.state));
+    // store.dispatch(login(this.state));
+    this.props.login(this.state);
   };
 
   textChangeHandler = (fieldName, fieldValue) => {
@@ -100,7 +104,11 @@ export default class Login extends React.Component {
             {msg ? <div className="error-message">{msg}</div> : null}
           </div>
           <div className="foot-buttons">
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={this.submitHandler}
+            >
               Login
             </Button>
             <Button onClick={this.cancelHandler}>Cancel</Button>
@@ -114,3 +122,18 @@ export default class Login extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: credentials => {
+    dispatch(login(credentials));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
