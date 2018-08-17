@@ -14,12 +14,12 @@ export function register(payload) {
       res => {
         const {
           data = {},
-          data: { code, msg }
+          data: { code, msg, name, email, city, gender, profession }
         } = res;
-        if (code && code === 0) {
+        if (!isNaN(code) && code === 0) {
           dispatch({
             type: REGISTER,
-            payload: { userName, email, city, gender, profession, msg }
+            payload: { name, email, city, gender, profession, msg }
           });
         } else {
           dispatch({
@@ -35,6 +35,6 @@ export function register(payload) {
 }
 
 export function abandon(payload) {
-  const { userName, password } = payload;
-  return dispatch => abandonAPI(userName, password).then(res => {}, err => {});
+  const { name, password } = payload;
+  return dispatch => abandonAPI(name, password).then(res => {}, err => {});
 }

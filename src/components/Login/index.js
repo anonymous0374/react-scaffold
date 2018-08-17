@@ -7,7 +7,7 @@ import { store } from "models/store";
 import "antd/dist/antd.css";
 import "./style.less";
 
-class Login extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -126,18 +126,3 @@ class Login extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-const mapDispatchToProps = dispatch => ({
-  login: credentials => {
-    dispatch(login(credentials));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);

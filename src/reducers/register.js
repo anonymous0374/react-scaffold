@@ -1,17 +1,21 @@
 import { REGISTER, ABANDON } from "actions/register";
 
-export default function registerReducer(state = {}, action) {
+export default function registerReducer(state, action) {
   const { type, payload } = action;
+  let rtn = {};
   switch (type) {
     case REGISTER: {
-      return { ...state, ...payload };
+      rtn = { ...state, ...payload };
       break;
     }
     case ABANDON: {
+      rtn = { ...state };
       break;
     }
     default: {
-      return state;
+      // do nothing
     }
   }
+
+  return rtn;
 }

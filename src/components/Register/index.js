@@ -14,13 +14,20 @@ class RegisterForm extends Component {
       }
     } = this;
 
-    console.log("register component this: ", this);
+    console.info(this);
 
     validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const { userName, password, email, city, profession, gender } = values;
+        const {
+          userName: name,
+          password,
+          email,
+          city,
+          profession,
+          gender
+        } = values;
         const basicInfo = {
-          userName,
+          name,
           password,
           email
         };

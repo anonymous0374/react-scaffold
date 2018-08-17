@@ -15,6 +15,7 @@ function Routes(props) {
   return (
     <Router>
       <Switch>
+        {auth.authenticated ? null : <Redirect to="/login" />}
         <Route path="/" exact render={() => <Redirect to="/assets" />} />
         <Route path="/login" exact component={Auth} />
         <Route

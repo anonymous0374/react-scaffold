@@ -36,6 +36,9 @@ export default function assetsReducer(state, action) {
       // rtn = [...res];
       break;
     }
+    case GOTO_LOGIN: {
+      rtn = { ...rtn, auth: { authenticated: false } };
+    }
     default:
       break;
   }

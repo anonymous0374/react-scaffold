@@ -95,7 +95,8 @@ module.exports = {
       actions: path.join(__dirname, "src/actions"),
       reducers: path.join(__dirname, "src/reducers"),
       models: path.join(__dirname, "src/models"),
-      services: path.join(__dirname, "src/services")
+      services: path.join(__dirname, "src/services"),
+      utilities: path.join(__dirname, "src/utilities")
     }
   },
   plugins: [
