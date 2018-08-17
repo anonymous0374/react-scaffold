@@ -11,7 +11,8 @@ export default function authReducer(state, action) {
         city,
         gender,
         profession,
-        authenticated
+        authenticated,
+        msg
       } = action.payload;
       rtn = {
         ...state,
@@ -20,7 +21,8 @@ export default function authReducer(state, action) {
         city,
         gender,
         profession,
-        authenticated
+        authenticated,
+        msg
       };
       break;
     }

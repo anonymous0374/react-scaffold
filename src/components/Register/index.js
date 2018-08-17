@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import { Form, Button, Input, Row, Col, Card, Icon, Tooltip } from "antd";
-import { register } from "actions/register";
-import { store } from "models/store";
 import "./style.less";
 
 const FormItem = Form.Item;
 
 class RegisterForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   submitHandler = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    const {
+      props: {
+        form: { validateFieldsAndScroll },
+        register
+      }
+    } = this;
+
+    console.log("register component this: ", this);
+
+    validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.info("data to submit: ", values);
         const { userName, password, email, city, profession, gender } = values;
         const basicInfo = {
           userName,
@@ -28,17 +29,24 @@ class RegisterForm extends Component {
           gender,
           profession
         };
-        store.dispatch(register({ basicInfo, extraInfo }));
+        register({ basicInfo, extraInfo });
       }
     });
   };
 
-  cancelHandler = e => {
-    this.props.form.resetFields();
+  cancelHandler = () => {
+    const {
+      props: { form }
+    } = this;
+    form.resetFields();
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const {
+      props: {
+        form: { getFieldDecorator }
+      }
+    } = this;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },

@@ -1,3 +1,5 @@
+import { getAssets as getAssetsAPI } from "services/assets";
+
 export const ADD_ASSET = "ADD_ASSET";
 export const UPDATE_ASSET = "UPDATE_ASSET";
 export const GET_ASSETS = "GET_ASSETS";
@@ -18,9 +20,23 @@ export function update(payload) {
 }
 
 export function getAssets(payload) {
-  return {
-    type: GET_ASSETS,
-    payload
+  return dispatch => {
+    getAssetsAPI(payload).then(
+      res => {
+        const {
+          data: { code, msg },
+          data = {}
+        } = res;
+        console.info("getAssets, res:", res);
+        if (!isNaN(code) && code === 0) {
+          dispatch({
+            type: GET_ASSETS,
+            payload: res
+          });
+        }
+      },
+      err => {}
+    );
   };
 }
 

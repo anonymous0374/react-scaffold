@@ -5,28 +5,10 @@ import {
   GET_ASSETS
 } from "actions/assets";
 
-export default function assetsReducer(
-  state = [
-    {
-      key: 0,
-      name: "real estate 1",
-      location: "Jiaxing",
-      description: "Fu Sheng Min Di",
-      price: 1270000
-    },
-    {
-      key: 1,
-      name: "real estate 2",
-      location: "Ezhou",
-      description: "Zhulin Square",
-      price: 550000
-    }
-  ],
-  action
-) {
+export default function assetsReducer(state, action) {
   let rtn = { ...state };
-  const { payload } = action;
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case ADD_ASSET: {
       rtn = [...rtn, payload];
       break;
@@ -50,8 +32,8 @@ export default function assetsReducer(
       break;
     }
     case GET_ASSETS: {
-      const res = rtn.filter(item => item.indexOf(payload) > -1);
-      rtn = [...res];
+      console.info("payload: ", payload);
+      // rtn = [...res];
       break;
     }
     default:

@@ -53,7 +53,9 @@ class Login extends React.Component {
 
   render() {
     const { name, password, showPassword } = this.state;
-    const { msg, auth } = this.props;
+    const {
+      auth: { authenticated, msg }
+    } = this.props;
 
     return (
       <div className="login">
@@ -118,7 +120,7 @@ class Login extends React.Component {
           <div className="register-link">
             <Link to="/register">Don't have an Account? Click to Register</Link>
           </div>
-          {auth && auth.authenticated ? <Redirect to="/assets" /> : null}
+          {authenticated ? <Redirect to="/assets" /> : null}
         </form>
       </div>
     );

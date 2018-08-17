@@ -1,11 +1,24 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
+import { connect } from "react-redux";
 import RegisterForm from "components/Register";
+import { register } from "actions/register";
 
-class Register extends Component {
-  render() {
-    return <RegisterForm />;
-  }
+function Register() {
+  return <RegisterForm />;
 }
 
-export default withRouter(Register);
+const mapStateToProps = state => ({
+  auth: state.auth,
+  user: state.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  register: payload => {
+    dispatch(register(payload));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register);

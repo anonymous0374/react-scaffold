@@ -15,6 +15,13 @@ class Assets extends React.Component {
     */
   }
 
+  componentDidMount() {
+    const {
+      props: { load, auth }
+    } = this;
+    load(auth.name);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -25,11 +32,13 @@ class Assets extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   assets: state.assets
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: payload => dispatch(add(payload))
+  add: payload => dispatch(add(payload)),
+  load: user => dispatch(getAssets(user))
 });
 
 /*
@@ -42,6 +51,6 @@ export default withRouter(
 */
 
 export default connect(
-  mapStateToProps // ,
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Assets);

@@ -1,15 +1,8 @@
 import axios from "axios";
-
-export function getUserByName(name) {
-  return axios.get("/ams/user", {
-    params: {
-      name
-    }
-  });
-}
+import { API_LOGIN } from "configs/URIs";
 
 export function login(name, password) {
-  return axios.post("/ams/login", {
+  return axios.post(API_LOGIN, {
     params: {
       name,
       password

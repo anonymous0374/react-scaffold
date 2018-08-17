@@ -16,22 +16,15 @@ function Routes(props) {
     <Router>
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/assets" />} />
-        <Route
-          path="/login"
-          exact
-          render={() => (auth.authenticated ? <Auth /> : <Auth />)}
-        />
-        } />
+        <Route path="/login" exact component={Auth} />
         <Route
           path="/assets"
           exact
-          render={() => (auth.authenticated ? <Assets /> : <Auth />)}
+          render={() =>
+            auth.authenticated ? <Assets /> : <Redirect to="/login" />
+          }
         />
-        <Route
-          path="/register"
-          exact
-          render={() => (auth.authenticated ? <Register /> : <Auth />)}
-        />
+        <Route path="/register" exact component={Register} />
       </Switch>
     </Router>
   );
@@ -41,4 +34,5 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
+// connect Routes to auth section
 export default connect(mapStateToProps)(Routes);

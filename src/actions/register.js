@@ -19,7 +19,7 @@ export function register(payload) {
         if (code && code === 0) {
           dispatch({
             type: REGISTER,
-            payload: { userName, email, city, gender, profession }
+            payload: { userName, email, city, gender, profession, msg }
           });
         } else {
           dispatch({
