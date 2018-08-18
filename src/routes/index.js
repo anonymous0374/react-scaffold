@@ -6,24 +6,24 @@ import {
   Redirect
 } from "react-router-dom";
 import { connect } from "react-redux";
-import Auth from "routes/Auth";
+import Login from "routes/Auth";
 import Assets from "routes/Assets";
 import Register from "routes/Register";
 
 function Routes(props) {
-  const { auth } = props;
+  const {
+    auth: { authenticated }
+  } = props;
+
   return (
     <Router>
       <Switch>
-        {auth.authenticated ? null : <Redirect to="/login" />}
         <Route path="/" exact render={() => <Redirect to="/assets" />} />
-        <Route path="/login" exact component={Auth} />
+        <Route path="/login" exact component={Login} />
         <Route
           path="/assets"
           exact
-          render={() =>
-            auth.authenticated ? <Assets /> : <Redirect to="/login" />
-          }
+          render={() => (authenticated ? <Assets /> : <Redirect to="/login" />)}
         />
         <Route path="/register" exact component={Register} />
       </Switch>

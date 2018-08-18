@@ -4,10 +4,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "actions/auth";
 
-function Auth(props) {
-  return <Login />;
-}
-
 const mapStateToProps = state => ({
   auth: state.auth
 });

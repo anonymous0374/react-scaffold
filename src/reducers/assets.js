@@ -2,7 +2,8 @@ import {
   ADD_ASSET,
   UPDATE_ASSET,
   REMOVE_ASSET,
-  GET_ASSETS
+  GET_ASSETS,
+  GOTO_LOGIN
 } from "actions/assets";
 
 export default function assetsReducer(state, action) {

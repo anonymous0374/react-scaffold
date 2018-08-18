@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const Progressbar = require("progress-bar-webpack-plugin");
 // post css plugins
 const postcssImport = require("postcss-import");
 const postcssNext = require("postcss-cssnext");
@@ -43,7 +44,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules|dist/,
-        use: ["babel-loader"]
+        use: [{ loader: "babel-loader", options: { cacheDirectory: true } }]
       },
       {
         test: /\.less$/,
@@ -115,6 +116,7 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     }),
+    new Progressbar(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()

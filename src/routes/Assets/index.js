@@ -8,11 +8,6 @@ class Assets extends React.Component {
   constructor(props) {
     super(props);
     this.state = [];
-    /*
-    this.unsubscribe = store.subscribe(() => {
-      this.state = store.getState().assets;
-    });
-    */
   }
 
   componentDidMount() {
@@ -40,15 +35,6 @@ const mapDispatchToProps = dispatch => ({
   add: payload => dispatch(add(payload)),
   load: user => dispatch(getAssets(user))
 });
-
-/*
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Assets)
-);
-*/
 
 export default connect(
   mapStateToProps,
