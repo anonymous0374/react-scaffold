@@ -120,7 +120,6 @@ export default class Login extends React.Component {
           <div className="register-link">
             <Link to="/register">Don't have an Account? Click to Register</Link>
           </div>
-          {authenticated ? <Redirect to="/assets" /> : null}
         </form>
       </div>
     );

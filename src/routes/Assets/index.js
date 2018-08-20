@@ -5,11 +5,6 @@ import { add, update, removeAssets, getAssets } from "actions/assets";
 import AssetsList from "components/Assets/AssetsList";
 
 class Assets extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = [];
-  }
-
   componentDidMount() {
     const {
       props: { load, auth }
@@ -18,9 +13,12 @@ class Assets extends React.Component {
   }
 
   render() {
+    const {
+      props: { assets }
+    } = this;
     return (
       <React.Fragment>
-        <AssetsList />
+        <AssetsList assets={assets} />
       </React.Fragment>
     );
   }
