@@ -1,15 +1,15 @@
 import { initialState } from "models/store";
-import { login as loginAPI } from "services/auth";
+import { login as loginAPI, logout as logoutAPI } from "services/auth";
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
-export function login(payload) {
-  let { name, password } = payload;
+export function login(credentials) {
+  let { name, password } = credentials;
   name = name ? name.trim() : "";
   password = password ? password.trim() : "";
 
-  return (dispatch, getState) =>
+  return dispatch =>
     loginAPI(name, password).then(
       res => {
         const {
@@ -32,4 +32,36 @@ export function login(payload) {
         console.info(err);
       }
     );
+}
+
+export function logout(name) {
+  return dispatch => {
+    logoutAPI(name).then(
+      res => {
+        const {
+          data: { code, msg },
+          data = {}
+        } = res;
+
+        dispatch({
+          type: LOGOUT,
+          payload: {
+            name: null,
+            email: null,
+            password: null,
+            city: null,
+            profession: null,
+            gender: false
+          }
+        });
+
+        if (!isNaN(code) && code === 0) {
+          throw new Error(msg);
+        }
+      },
+      err => {
+        throw new Error(err);
+      }
+    );
+  };
 }

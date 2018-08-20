@@ -4,7 +4,7 @@ import { Table, Icon, Divider } from "antd";
 import "antd/dist/antd.css";
 
 export default function AssetsList(props) {
-  const { assets } = this.props;
+  const { assets } = props;
   const columns = [
     { title: "Asset Name", dataIndex: "name", key: "name" },
     { title: "Location", dataIndex: "location", key: "location" },

@@ -5,4 +5,18 @@
   position: absolute;
   width: 100%;
   min-width: 1100px;
+  display: flex;
+  flex-flow: row;
+
+  @media (min-width: 1280px) and (max-width: 1440px) {
+    .content {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .content {
+      width: 1440px;
+    }
+  }
 }
