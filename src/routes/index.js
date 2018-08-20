@@ -9,23 +9,25 @@ import { connect } from "react-redux";
 import Login from "routes/Auth";
 import Assets from "routes/Assets";
 import Register from "routes/Register";
+import getRestrictedComponent from "hocs/RestrictedComponent";
 
 function Routes(props) {
   const {
     auth: { authenticated }
   } = props;
 
+  const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   return (
     <Router>
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/assets" />} />
-        <Route path="/login" exact component={Login} />
         <Route
-          path="/assets"
-          exact
-          render={() => (authenticated ? <Assets /> : <Redirect to="/login" />)}
+          path="/login"
+          render={() => (authenticated ? <Redirect to="/assets" /> : <Login />)}
         />
+        <Route path="/assets" render={() => <RestrictedAssets />} />
         <Route path="/register" exact component={Register} />
+        <Route path="*" render={() => <span>404 Page Not Found</span>} />
       </Switch>
     </Router>
   );

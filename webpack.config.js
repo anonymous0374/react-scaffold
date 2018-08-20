@@ -97,6 +97,7 @@ module.exports = {
       reducers: path.join(__dirname, "src/reducers"),
       models: path.join(__dirname, "src/models"),
       services: path.join(__dirname, "src/services"),
+      hocs: path.join(__dirname, "src/hocs"),
       utilities: path.join(__dirname, "src/utilities")
     }
   },

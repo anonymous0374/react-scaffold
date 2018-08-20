@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "actions/auth";
+import { LOGIN, LOGOUT, GET_USER } from "actions/auth";
 import { initialState } from "models/store";
 
 export default function authReducer(state, action) {
@@ -26,7 +26,8 @@ export default function authReducer(state, action) {
       };
       break;
     }
-    case LOGOUT: {
+    case LOGOUT:
+    case GET_USER: {
       rtn = { ...state, ...action.payload };
       break;
     }

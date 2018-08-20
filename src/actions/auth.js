@@ -1,8 +1,13 @@
 import { initialState } from "models/store";
-import { login as loginAPI, logout as logoutAPI } from "services/auth";
+import {
+  login as loginAPI,
+  logout as logoutAPI,
+  getUser as getUserAPI
+} from "services/auth";
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const GET_USER = "GET_USER";
 
 export function login(credentials) {
   let { name, password } = credentials;
@@ -55,12 +60,41 @@ export function logout(name) {
           }
         });
 
-        if (!isNaN(code) && code === 0) {
+        if (!(isNaN(code) && code === 0)) {
           throw new Error(msg);
         }
       },
       err => {
         throw new Error(err);
+      }
+    );
+  };
+}
+
+export function getUser() {
+  return dispatch => {
+    getUserAPI().then(
+      res => {
+        const {
+          data: { code, msg, user },
+          data = {}
+        } = res;
+        if (!isNaN(code) && code === 0) {
+          dispatch({
+            type: GET_USER,
+            payload: { code: 0, user, authenticated: true }
+          });
+        }
+        dispatch({
+          type: GET_USER,
+          payload: { authenticated: false }
+        });
+      },
+      err => {
+        dispatch({
+          type: GET_USER,
+          payload: { authenticated: false, code: -1, msg: err }
+        });
       }
     );
   };

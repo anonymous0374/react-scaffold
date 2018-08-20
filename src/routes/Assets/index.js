@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { add, update, removeAssets, getAssets } from "actions/assets";
 import AssetsList from "components/Assets/AssetsList";
+import getRestrictedComponent from "hocs/RestrictedComponent.js";
 
 class Assets extends React.Component {
   componentDidMount() {
