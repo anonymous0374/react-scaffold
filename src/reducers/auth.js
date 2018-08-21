@@ -28,6 +28,7 @@ export default function authReducer(state, action) {
     }
     case LOGOUT:
     case GET_USER: {
+      console.info("state: ", state);
       rtn = { ...state, ...action.payload };
       break;
     }

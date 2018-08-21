@@ -29,11 +29,10 @@ export function getAssets(payload) {
           data: { code, msg },
           data = {}
         } = res;
-        console.info("getAssets, res:", res);
         if (!isNaN(code) && code === SUCCESS) {
           dispatch({
             type: GET_ASSETS,
-            payload: res
+            payload: data
           });
         } else if (!isNaN(code) && code === NOT_LOGIN) {
           dispatch({

@@ -9,7 +9,7 @@ class Assets extends React.Component {
   componentDidMount() {
     const {
       props: { load, auth }
-    } = this;
+    } = this;    
     load(auth.name);
   }
 

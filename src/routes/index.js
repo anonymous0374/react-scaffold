@@ -16,6 +16,8 @@ function Routes(props) {
     auth: { authenticated }
   } = props;
 
+  console.info(`authenticated in assets from state.auth: ${authenticated}`);
+
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   return (
     <Router>
