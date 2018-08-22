@@ -73,14 +73,14 @@ export function logout(name) {
 
 export function getUser() {
   return dispatch => {
-    getUserAPI(name).then(
+    getUserAPI().then(
       res => {
         const {
-          data: { code, msg, ...rest },
+          data: { code, msg, name, ...rest },
           data = {}
         } = res;
 
-        if (!isNaN(code) && code === 0) {
+        if (!isNaN(code) && code === 0 && name !== "Guest") {
           return dispatch({
             type: GET_USER,
             payload: { code: 0, ...rest, authenticated: true }
@@ -90,10 +90,7 @@ export function getUser() {
         return dispatch({
           type: GET_USER,
           payload: {
-            code: 0,
-            msg: "Not login",
-            name: "Guest",
-            authenticated: false
+            ...data
           }
         });
       },
