@@ -1,9 +1,11 @@
+@img-path: '../../../../public/images';
+
 .login {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../../../public/images/entry-background.png");
+  background-image: url("@{img-path}/entry-background.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -13,7 +15,6 @@
     padding: 30px 10px 10px 10px;
     height: max-content;
     background-color: #ddd;
-
     opacity: 0.95;
 
     h1.form-title {

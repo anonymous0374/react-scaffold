@@ -1,7 +1,6 @@
 import React from "react";
-import Login from "components/Login";
+import Login from "presentationals/Login";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { login } from "actions/auth";
 
 const mapStateToProps = state => ({

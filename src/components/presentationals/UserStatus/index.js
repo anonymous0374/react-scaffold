@@ -5,7 +5,7 @@ const { Fragment } = Component;
 
 export default function UserStatus(props) {
   let { name } = props;
-  name = name ? name : "Guest";
+  name = name || "Guest";
   return (
     <div className="status">
       <div>{name}</div>

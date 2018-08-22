@@ -2,9 +2,9 @@ import ReactDom from "react-dom";
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { store } from "models/store";
-import Routes from "routes";
 import { getUser } from "actions/auth";
-import "./index.less";
+import Routes from "./router";
+import "./app.less";
 
 // to enable module hot reload(instead of page reload)
 if (module.hot) {

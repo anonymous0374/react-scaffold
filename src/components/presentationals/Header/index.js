@@ -2,7 +2,7 @@
  * put user status here
  */
 
-import React, { Component } from "React";
+import React from "React";
 import { Link } from "react-router-dom";
 import { UserStatus } from "components/UserStatus";
 import { connect } from "react-redux";

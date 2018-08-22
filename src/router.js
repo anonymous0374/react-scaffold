@@ -6,17 +6,15 @@ import {
   Redirect
 } from "react-router-dom";
 import { connect } from "react-redux";
-import Login from "routes/Auth";
-import Assets from "routes/Assets";
-import Register from "routes/Register";
+import Login from "containers/Auth";
+import Assets from "containers/Assets";
+import Register from "containers/Register";
 import getRestrictedComponent from "hocs/RestrictedComponent";
 
 function Routes(props) {
   const {
     auth: { authenticated }
   } = props;
-
-  console.info(`authenticated in assets from state.auth: ${authenticated}`);
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   return (

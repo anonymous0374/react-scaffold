@@ -90,14 +90,15 @@ module.exports = {
   },
   resolve: {
     alias: {
-      components: path.join(__dirname, "src/components"),
+      presentationals: path.join(__dirname, "src/components/presentationals"),
+      containers: path.join(__dirname, "src/components/containers"),
+      hocs: path.join(__dirname, "src/components/hocs"),
+      actions: path.join(__dirname, "src/state/actions"),
+      reducers: path.join(__dirname, "src/state/reducers"),
+      models: path.join(__dirname, "src/state/models"),
       routes: path.join(__dirname, "src/routes"),
       configs: path.join(__dirname, "src/configs"),
-      actions: path.join(__dirname, "src/actions"),
-      reducers: path.join(__dirname, "src/reducers"),
-      models: path.join(__dirname, "src/models"),
       services: path.join(__dirname, "src/services"),
-      hocs: path.join(__dirname, "src/hocs"),
       utilities: path.join(__dirname, "src/utilities")
     }
   },
