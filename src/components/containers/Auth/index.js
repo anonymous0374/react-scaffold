@@ -1,19 +1,23 @@
-import React from "react";
-import Login from "presentationals/Login";
-import { connect } from "react-redux";
-import { login } from "actions/auth";
+import React, { Component } from 'react';
+import Login from 'presentationals/Login';
+import { connect } from 'react-redux';
+import { login } from 'actions/auth';
+
+require('./style.less');
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: credentials => {
+  login: (credentials) => {
     dispatch(login(credentials));
-  }
+  },
 });
 
-export default connect(
+const ConnectedLogin = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Login);
+
+export default () => <div className="auth"><ConnectedLogin /></div>;

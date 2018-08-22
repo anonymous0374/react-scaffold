@@ -1,86 +1,43 @@
 @img-path: '../../../../public/images';
 
-.login {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url("@{img-path}/entry-background.png");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+.login-form {
+  width: 500px;
+  padding: 30px;
+  height: max-content;
+  opacity: 0.95;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.8rem;
+  background-color: #fff;
 
-  .login-form {
-    width: 450px;
-    padding: 30px 10px 10px 10px;
-    height: max-content;
-    background-color: #ddd;
-    opacity: 0.95;
+  h1.form-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+  }
 
-    h1.form-title {
-      font-size: 16px;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+  button {
+    width: 80%;
+    text-align: center;
+  }
 
-    .grid-container {
-      display: grid;
-      grid-template-columns: [col-1] 30% [col-2] 70% [col-end];
-      grid-template-rows: 40px 40px 40px;
+  .register-link {
+    width: 80%;
+    float: right;
+    font-size: 13px;
+    margin-top: 1rem;
+  }
 
-      .grid-title {
-        text-align: right;
-        margin-right: 15px;
-        font-weight: 500;
-        padding-top: 5px;
-      }
+  .error-message {
+    font-size: 13px;
+    color: red;
+    width: 100%;
+    float: right;
+    margin-bottom: 24px;
+  }
 
-      .grid-field {
-        width: 85%;
-        display: flex;
-
-        label {
-          font-size: 13px;
-          line-height: 40px;
-        }
-      }
-    }
-
-    .foot-buttons {
-      text-align: center;
-
-      button {
-        width: 80px;
-      }
-
-      button:first-child {
-        margin-right: 20px;
-      }
-    }
-
-    .v-center {
-      position: relative;
-      top: 50%;
-      margin-top: -50%;
-    }
-
-    .register-link {
-      width: 70%;
-      float: right;
-      font-size: 13px;
-      margin-top: 1rem;
-    }
-
-    .error-message {
-      font-size: 13px;
-      color: red;
-      width: 70%;
-      float: right;
-    }
-
-    .error-message::first-letter {
-      text-transform: uppercase;
-    }
+  .error-message::first-letter {
+    text-transform: uppercase;
   }
 }

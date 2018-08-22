@@ -1,99 +1,112 @@
-import React from "react";
-import { Button, Input, Form, Checkbox, Label } from "antd";
-import { login } from "actions/auth";
-import "antd/dist/antd.css";
-import "./style.less";
+import React from 'react';
+import {
+  Button, Input, Form, Checkbox, Row, Col, Icon,
+} from 'antd';
+import { Link } from 'react-router-dom';
+import 'antd/dist/antd.css';
+import './style.less';
 
-export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
+const { Item: FormItem } = Form;
 
-    this.state = {
-      name: "",
-      password: "",
-      showPassword: false
-    };
-  }
+class Login extends React.Component {
+  state = { showPassword: false }; // pure in-component state, no business logic involved
 
-  submitHandler = event => {
-    const { login } = this.props;
+  submitHandler = (event) => {
     event.preventDefault();
-    // store.dispatch(login(this.state));
-    login(this.state);
+    const {
+      props: {
+        login,
+        form: { validateFields },
+      },
+    } = this;
+    validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+      login(values);
+    });
   };
 
-  textChangeHandler = (fieldName, fieldValue) => {
-    this.setState(() => ({
-      [fieldName]: fieldValue
-    }));
+  checkboxHandler = (fieldName, value) => {
+    this.setState(() => ({ [fieldName]: value }));
   };
 
   cancelHandler = () => {
-    this.setState(() => ({
-      name: "",
-      password: "",
-      authenticated: false,
-      showPassword: false
-    }));
+    const {
+      props: { form: resetFields },
+    } = this;
+    resetFields();
   };
 
   render() {
-    const { name, password, showPassword } = this.state;
     const {
-      auth: { authenticated, msg }
-    } = this.props;
+      props: {
+        auth: { msg },
+        form: { getFieldDecorator },
+      },
+    } = this;
+
+    const { showPassword } = this.state;
+    const formItemLayout = {
+      labelCol: { span: 8 },
+      wrapperCol: { span: 12 },
+    };
 
     return (
-      <div className="login">
-        <form onSubmit={this.submitHandler} className="login-form">
+      <Form onSubmit={this.submitHandler} className="login-form">
+        <Row>
           <h1 className="form-title">
             Welcome Login to Assets Management System
           </h1>
-          <div className="grid-container">
-            <div className="grid-title">name: </div>
-            <div className="grid-field">
+        </Row>
+        <Row>
+          <FormItem>
+            {getFieldDecorator('name', {
+              rules: [
+                { required: true, message: 'Please entery your password.' },
+              ],
+            })(<Input type="text" placeholder="user name" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />)}
+          </FormItem>
+        </Row>
+        <Row>
+          <FormItem>
+            {getFieldDecorator('password', {
+              rules: [
+                { required: true, message: 'Please entery your password.' },
+              ],
+            })(
               <Input
-                type="text"
-                placeholder="user name"
-                value={name}
-                onChange={event => {
-                  this.textChangeHandler("name", event.target.value);
-                }}
-              />
-            </div>
-            <div className="grid-title">Password: </div>
-            <div className="grid-field">
-              <Input
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="password"
-                value={password}
-                onChange={event => {
-                  this.textChangeHandler("password", event.target.value);
-                }}
-              />
-            </div>
-            <div className="grid-title" />
-            <div className="grid-field">
-              <Checkbox
-                id="show"
-                type="checkbox"
-                checked={showPassword}
-                onChange={event =>
-                  this.textChangeHandler("showPassword", event.target.checked)
-                }
-              />
-              <label htmlFor="show">Show Password</label>
-              <Checkbox
-                id="remember"
-                type="checkbox"
-                style={{ marginLeft: "5px" }}
-              />
-              <label htmlFor="remember">Remember Me</label>
-            </div>
-            <div />
-            {msg ? <div className="error-message">{msg}</div> : null}
-          </div>
-          <div className="foot-buttons">
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              />,
+            )}
+          </FormItem>
+        </Row>
+        <Row style={{ marginBottom: '24px' }}>
+          <Col span={12}>
+            <Checkbox
+              id="show"
+              type="checkbox"
+              checked={showPassword}
+              onChange={event => this.checkboxHandler('showPassword', event.target.checked)}
+            />
+            <label htmlFor="show">Show Passowrd</label>
+          </Col>
+          <Col span={12}>
+            <Checkbox
+              id="remember"
+              type="checkbox"
+              style={{ marginLeft: '5px' }}
+            />
+            <label htmlFor="remember">Remember Me</label>
+          </Col>
+        </Row>
+        <Row>
+          {msg ? <div className="error-message">{msg}</div> : null}
+        </Row>
+        <Row>
+          <Col span={12}>
             <Button
               type="primary"
               htmlType="submit"
@@ -101,13 +114,19 @@ export default class Login extends React.Component {
             >
               Login
             </Button>
+          </Col>
+          <Col span={12}>
             <Button onClick={this.cancelHandler}>Cancel</Button>
-          </div>
+          </Col>
+        </Row>
+        <Row>
           <div className="register-link">
             <Link to="/register">Don't have an Account? Click to Register</Link>
           </div>
-        </form>
-      </div>
+        </Row>
+      </Form>
     );
   }
 }
+
+export default Form.create()(Login);
