@@ -1,9 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Button, Input, Form, Checkbox, Label } from "antd";
-import { login, logout } from "actions/auth";
-import { Redirect, Link } from "react-router-dom";
-import { store } from "models/store";
+import { login } from "actions/auth";
 import "antd/dist/antd.css";
 import "./style.less";
 
@@ -16,17 +13,6 @@ export default class Login extends React.Component {
       password: "",
       showPassword: false
     };
-
-    /* use connect() instead of store.subscribe directly
-    store.subscribe(() => {
-      const { auth, assets } = store.getState();
-      if (auth.login) {
-        this.setState(() => ({
-          gotoAssets: true
-        }));
-      }
-    });
-    */
   }
 
   submitHandler = event => {

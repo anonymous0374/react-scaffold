@@ -21,4 +21,4 @@ function Header(props) {
   );
 }
 
-export default connect(state => ({ user: state.user }), dispatch => {logout: })(Header);
+export default connect(state => ({ user: state.user }))(Header);

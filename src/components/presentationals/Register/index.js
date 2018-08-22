@@ -14,8 +14,6 @@ class RegisterForm extends Component {
       }
     } = this;
 
-    console.info(this);
-
     validateFieldsAndScroll((err, values) => {
       if (!err) {
         const {
