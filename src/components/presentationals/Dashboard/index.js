@@ -3,13 +3,12 @@ import Header from 'containers/Header';
 import './style.less';
 
 export default function Dashboard(props) {
-  console.info(Header);
   const {
     user: { name },
   } = props;
   const elemGuest = <span>Guest</span>;
   const elemVip = <span>VIP</span>;
-  const isVip = name !== 'Guest';
+  const isVip = name && name !== 'Guest';
 
   return (
     <div className="dashboard">
