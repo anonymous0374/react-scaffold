@@ -26,7 +26,6 @@ export default function authReducer(state, action) {
           city,
           gender,
           profession,
-          authenticated,
         },
         msg,
       };

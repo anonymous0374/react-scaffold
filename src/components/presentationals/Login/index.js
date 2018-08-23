@@ -56,7 +56,7 @@ class Login extends React.Component {
       <Form onSubmit={this.submitHandler} className="login-form">
         <Row>
           <h1 className="form-title">
-            Welcome Login to Assets Management System
+            Welcome to Assets Management System
           </h1>
         </Row>
         <Row>

@@ -1,39 +1,65 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'antd';
+import './style.less';
 
-const { Fragment } = React;
-const { SubMenu } = Menu;
-const {
-  ItemGroup: { MenuItemGroup },
-} = Menu;
+export default class UserStatus extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSub: false,
+    };
+  }
 
-export default function UserStatus(props) {
-  const { user, login, logout } = props;
-  const { name } = user;
+  onMenuHoverIn = () => {
+    this.setState(() => ({ showSub: true }));
+  };
 
-  return (
-    <div className="status">
-      <Menu mode="horizontal">
-        <SubMenu title={name || 'Guest'}>
-          {name === 'Guest' ? (
-            <MenuItemGroup>
-              <Menu.Item>
-                <Link to="/login">Sign In</Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link to="/register">Not a VIP? Sign Up</Link>
-              </Menu.Item>
-            </MenuItemGroup>
-          ) : (
-            <MenuItemGroup>
-              <Menu.Item onClick={logout}>
-                <Link to="/login">Log Out</Link>
-              </Menu.Item>
-            </MenuItemGroup>
-          )}
-        </SubMenu>
-      </Menu>
-    </div>
-  );
+  onMenuHoverOut = () => {
+    this.setState(() => ({ showSub: false }));
+  };
+
+  render() {
+    const {
+      props: { user, login, logout },
+    } = this;
+    let { name } = user;
+    const {
+      state: { showSub },
+    } = this;
+    name ? '' : (name = 'Guest');
+    const isVip = name !== 'Guest';
+    const guestMenu = (
+      <ul style={{ display: showSub ? 'block' : 'none' }}>
+        <li>
+          <Link to="/login">Sign In</Link>
+        </li>
+        <li>
+          <Link to="/register">Not a VIP? Sign Up</Link>
+        </li>
+      </ul>
+    );
+    const vipMenu = (
+      <ul style={{ display: showSub ? 'block' : 'none' }}>
+        <li>
+          <Link to="/user">Profile</Link>
+        </li>
+        <li>
+          <Link to="/login">Sign Out</Link>
+        </li>
+      </ul>
+    );
+
+    return (
+      <div className="status">
+        <div
+          className="userName"
+          onMouseEnter={this.onMenuHoverIn}
+          onMouseLeave={this.onMenuHoverOut}
+        >
+          <div>{name}</div>
+          {isVip ? vipMenu : guestMenu}
+        </div>
+      </div>
+    );
+  }
 }

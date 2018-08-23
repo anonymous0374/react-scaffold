@@ -1,9 +1,5 @@
 import { initialState } from 'models/store';
-import {
-  login as loginAPI,
-  logout as logoutAPI,
-  getUser as getUserAPI,
-} from 'services/auth';
+import { login as loginAPI, logout as logoutAPI, getUser as getUserAPI } from 'services/auth';
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -84,7 +80,9 @@ export function getUser() {
         if (!isNaN(code) && code === 0 && name !== 'Guest') {
           return dispatch({
             type: GET_USER,
-            payload: { code: 0, ...rest, authenticated: true },
+            payload: {
+              code: 0, name, ...rest, authenticated: true,
+            },
           });
         }
 
