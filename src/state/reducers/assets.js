@@ -1,10 +1,6 @@
 import {
-  ADD_ASSET,
-  UPDATE_ASSET,
-  REMOVE_ASSET,
-  GET_ASSETS,
-  GOTO_LOGIN
-} from "actions/assets";
+  ADD_ASSET, UPDATE_ASSET, REMOVE_ASSET, GET_ASSETS, GOTO_LOGIN,
+} from 'actions/assets';
 
 export default function assetsReducer(state, action) {
   let rtn = { ...state };
@@ -15,7 +11,7 @@ export default function assetsReducer(state, action) {
       break;
     }
     case UPDATE_ASSET: {
-      rtn = rtn.map(item => {
+      rtn = rtn.map((item) => {
         if (item.name === payload.name) {
           return payload;
         }
@@ -33,7 +29,7 @@ export default function assetsReducer(state, action) {
       break;
     }
     case GET_ASSETS: {
-      console.info("payload: ", payload);
+      console.info('payload: ', payload);
       // rtn = [...res];
       break;
     }

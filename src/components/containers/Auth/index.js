@@ -7,6 +7,7 @@ require('./style.less');
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,4 +21,8 @@ const ConnectedLogin = connect(
   mapDispatchToProps,
 )(Login);
 
-export default () => <div className="auth"><ConnectedLogin /></div>;
+export default () => (
+  <div className="auth">
+    <ConnectedLogin />
+  </div>
+);

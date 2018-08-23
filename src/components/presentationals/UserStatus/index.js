@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const { Fragment } = Component;
+const { Fragment } = React;
 
 export default function UserStatus(props) {
-  let { name } = props;
-  name = name || 'Guest';
+  const { user, login, logout } = props;
+  const { name } = user;
+
   return (
     <div className="status">
-      <div>{name}</div>
+      <div>{name || 'Guest'}</div>
       <ul>
         {name === 'Guest' ? (
           <Fragment>
@@ -20,7 +21,9 @@ export default function UserStatus(props) {
             </li>
           </Fragment>
         ) : (
-          <li onClick={props.logout}>Logout</li>
+          <Fragment>
+            <li onClick={logout}>Logout</li>
+          </Fragment>
         )}
       </ul>
     </div>

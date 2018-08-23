@@ -9,8 +9,7 @@ import { connect } from 'react-redux';
 import Login from 'containers/Auth';
 import Assets from 'containers/Assets';
 import Register from 'containers/Register';
-// import Dashboard from 'containers/Dashboard';
-import Dashboard from 'presentationals/Dashboard';
+import Dashboard from 'containers/Dashboard';
 import getRestrictedComponent from 'hocs/RestrictedComponent';
 
 function Routes(props) {

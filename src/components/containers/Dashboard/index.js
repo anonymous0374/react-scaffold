@@ -3,14 +3,9 @@ import { connect } from 'react-redux';
 import Dashboard from 'presentationals/Dashboard';
 import REFRESH_DASHBOARD from 'actions/dashboard';
 
-class DashboardContainer extends Component {
-  render() {
-    return <Dashboard />;
-  }
-}
-
 const mapStateToProps = state => ({
   dashboard: state.dashboard,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,4 +14,7 @@ const mapDispatchToProps = dispatch => ({
   }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Dashboard);
