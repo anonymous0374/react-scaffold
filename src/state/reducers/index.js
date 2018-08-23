@@ -17,12 +17,16 @@ function combineReducers() {
     let transitState = { ...state };
     const { auth, user: authUser } = authReducer(transitState, payload);
     transitState = { ...transitState, auth, user: { ...authUser } };
+    console.info('transitionState 1: ', transitState);
     const { assets } = assetsReducer(transitState, payload);
     transitState = { ...transitState, assets };
+    console.info('transitionState 2: ', transitState);
     const { user: registerUser } = registerReducer(transitState, payload);
     transitState = { ...transitState, user: { ...registerUser } };
+    console.info('transitionState 3: ', transitState);
     const { dashboard } = dashboardReducer(transitState, payload);
     transitState = { ...transitState, dashboard };
+    console.info('transitionState 4: ', transitState);
     return transitState;
   };
 }

@@ -14,29 +14,22 @@ export function login(credentials) {
     (res) => {
       const {
         data: {
-          code, msg, name: userName, email, city, profession, gender,
+          code, msg, authenticated, user,
         },
       } = res;
       if (!isNaN(code) && code === 0) {
-        dispatch({
+        return dispatch({
           type: LOGIN,
           payload: {
-            auth: { authenticated: true, msg, name: userName },
-            user: {
-              name: userName,
-              email,
-              profession,
-              city,
-              gender,
-            },
+            auth: { authenticated, msg, name },
+            user,
           },
         });
-      } else {
-        dispatch({
-          type: LOGIN,
-          payload: { auth: { name: null, authenticated: false, msg }, user: {} },
-        });
       }
+      return dispatch({
+        type: LOGIN,
+        payload: { auth: { name: null, authenticated: false, msg }, user: {} },
+      });
     },
     (err) => {
       console.info(err);
@@ -56,12 +49,17 @@ export function logout(name) {
         dispatch({
           type: LOGOUT,
           payload: {
-            name: null,
-            email: null,
-            password: null,
-            city: null,
-            profession: null,
-            gender: false,
+            auth: {
+              name: null,
+              authenticated: false,
+            },
+            user: {
+              email: null,
+              password: null,
+              city: null,
+              profession: null,
+              gender: false,
+            },
           },
         });
 
