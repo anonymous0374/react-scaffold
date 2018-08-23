@@ -2,9 +2,9 @@
  * put user status here
  */
 
-import React from "React";
+import React from "react";
 import { Link } from "react-router-dom";
-import { UserStatus } from "components/UserStatus";
+import { UserStatus } from "presentationals/UserStatus";
 import { connect } from "react-redux";
 import "./style.less";
 

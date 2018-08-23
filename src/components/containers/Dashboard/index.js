@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Dashboard from "presentational/Dashboard";
-import REFRESH_DASHBOARD from 'actions/'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Dashboard from 'presentationals/Dashboard';
+import REFRESH_DASHBOARD from 'actions/dashboard';
 
 class DashboardContainer extends Component {
   render() {
@@ -9,14 +9,14 @@ class DashboardContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  dashboard: state.dashboard
-}
+const mapStateToProps = state => ({
+  dashboard: state.dashboard,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  refresh: () => {
-    return dispatch({
-      type: 
-    })
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  refresh: () => dispatch({
+    type: REFRESH_DASHBOARD,
+  }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
