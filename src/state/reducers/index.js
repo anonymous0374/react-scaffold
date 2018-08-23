@@ -3,22 +3,27 @@ import assetsReducer from 'reducers/assets';
 import registerReducer from 'reducers/register';
 import dashboardReducer from 'reducers/dashboard';
 
+/**
+ * combineReducers function returns a function who invokes all interested reducers
+ * with current state(of the whole app) and payload, and returns the resulting
+ * state(of the whole app)
+ * Therefore, what combineReducers function returns  is a so called "root reducer"
+ * This file exports this root reducer.
+ *
+ * I call the returned object "transitState" because it's a changing, temporary state
+ */
 function combineReducers() {
   return (state, payload) => {
-    const { auth, user: authUser } = authReducer(state, payload);
-    const { assets } = assetsReducer(state, payload);
-    const { user: registerUser } = registerReducer(state, payload);
-    const { dashboard } = dashboardReducer(state, payload);
-
-    return {
-      auth,
-      assets,
-      user: {
-        ...authUser,
-        ...registerUser,
-      },
-      dashboard,
-    };
+    let transitState = { ...state };
+    const { auth, user: authUser } = authReducer(transitState, payload);
+    transitState = { ...transitState, auth, user: { ...authUser } };
+    const { assets } = assetsReducer(transitState, payload);
+    transitState = { ...transitState, assets };
+    const { user: registerUser } = registerReducer(transitState, payload);
+    transitState = { ...transitState, user: { ...registerUser } };
+    const { dashboard } = dashboardReducer(transitState, payload);
+    transitState = { ...transitState, dashboard };
+    return transitState;
   };
 }
 

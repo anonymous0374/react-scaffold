@@ -1,7 +1,7 @@
 import { createStore, /* combineReducers, */ applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import rootReducer from 'reducers';
+import rootReducers from 'reducers';
 
 // initialState is the minimal but complete shape of the whole app
 export const initialState = {
@@ -24,4 +24,4 @@ export const initialState = {
   assets: [],
 };
 
-export const store = createStore(rootReducer, initialState, applyMiddleware(thunk, logger));
+export const store = createStore(rootReducers, initialState, applyMiddleware(thunk, logger));

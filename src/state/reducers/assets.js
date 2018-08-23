@@ -25,6 +25,7 @@ export default function assetsReducer(state, action) {
           return i;
         }
       });
+
       rtn = rtn.splice(index, 1);
       break;
     }
@@ -35,9 +36,11 @@ export default function assetsReducer(state, action) {
     }
     case GOTO_LOGIN: {
       rtn = { ...rtn, auth: { authenticated: false } };
+      break;
     }
     default:
       break;
   }
+
   return rtn;
 }

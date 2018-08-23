@@ -33,6 +33,7 @@ export default function authReducer(state, action) {
     }
     case LOGOUT:
     case GET_USER: {
+      console.info('merged state: ', { ...state, ...action.payload });
       rtn = { ...state, ...action.payload };
       break;
     }

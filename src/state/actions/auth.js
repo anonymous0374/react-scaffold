@@ -13,23 +13,34 @@ export function login(credentials) {
   return dispatch => loginAPI(name, password).then(
     (res) => {
       const {
-        data = {},
-        data: { code, msg, user = {} },
+        data: {
+          code, msg, name: userName, email, city, profession, gender,
+        },
       } = res;
       if (!isNaN(code) && code === 0) {
         dispatch({
           type: LOGIN,
-          payload: { ...user, authenticated: true, msg },
+          payload: {
+            auth: { authenticated: true, msg, name: userName },
+            user: {
+              name: userName,
+              email,
+              profession,
+              city,
+              gender,
+            },
+          },
         });
       } else {
         dispatch({
           type: LOGIN,
-          payload: { name: null, authenticated: false, msg },
+          payload: { auth: { name: null, authenticated: false, msg }, user: {} },
         });
       }
     },
     (err) => {
       console.info(err);
+      throw new Error(err);
     },
   );
 }
@@ -40,7 +51,6 @@ export function logout(name) {
       (res) => {
         const {
           data: { code, msg },
-          data = {},
         } = res;
 
         dispatch({
@@ -72,16 +82,22 @@ export function getUser() {
       (res) => {
         const {
           data: {
-            code, msg, name, ...rest
+            code, msg, name: userName, email, city, profession, gender,
           },
-          data = {},
         } = res;
 
-        if (!isNaN(code) && code === 0 && name !== 'Guest') {
+        if (!isNaN(code) && code === 0 && userName !== 'Guest') {
           return dispatch({
             type: GET_USER,
             payload: {
-              code: 0, name, ...rest, authenticated: true,
+              auth: { authenticated: true, msg, name: userName },
+              user: {
+                name: userName,
+                email,
+                profession,
+                city,
+                gender,
+              },
             },
           });
         }
@@ -89,14 +105,20 @@ export function getUser() {
         return dispatch({
           type: GET_USER,
           payload: {
-            ...data,
+            auth: { authenticated: false, msg, name: 'Guest' },
+            user: {
+              name: 'Guest',
+              email: null,
+              profession: null,
+              city: null,
+              gender: false,
+            },
           },
         });
       },
-      err => dispatch({
-        type: GET_USER,
-        payload: { authenticated: false, code: -1, msg: err },
-      }),
+      (err) => {
+        throw new Error(err);
+      },
     );
   };
 }
