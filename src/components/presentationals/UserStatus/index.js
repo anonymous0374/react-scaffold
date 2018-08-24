@@ -44,7 +44,7 @@ export default class UserStatus extends Component {
           <Link to="/user">Profile</Link>
         </li>
         <li>
-          <Link to="/login">Sign Out</Link>
+          <Link to="/login" onClick={logout}>Sign Out</Link>
         </li>
       </ul>
     );

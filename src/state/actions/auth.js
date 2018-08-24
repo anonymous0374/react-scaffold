@@ -1,4 +1,3 @@
-import { initialState } from 'models/store';
 import { login as loginAPI, logout as logoutAPI, getUser as getUserAPI } from 'services/auth';
 
 export const LOGIN = 'LOGIN';
@@ -32,40 +31,32 @@ export function login(credentials) {
       });
     },
     (err) => {
-      console.info(err);
       throw new Error(err);
     },
   );
 }
 
-export function logout(name) {
+export function logout() {
   return (dispatch) => {
-    logoutAPI(name).then(
+    logoutAPI().then(
       (res) => {
         const {
           data: { code, msg },
         } = res;
 
-        dispatch({
-          type: LOGOUT,
-          payload: {
-            auth: {
-              name: null,
-              authenticated: false,
+        if (!isNaN(code) && code === 0) {
+          return dispatch({
+            type: LOGOUT,
+            payload: {
+              auth: {
+                name: 'Guest',
+                authenticated: false,
+              },
+              user: null,
             },
-            user: {
-              email: null,
-              password: null,
-              city: null,
-              profession: null,
-              gender: false,
-            },
-          },
-        });
-
-        if (!(isNaN(code) && code === 0)) {
-          throw new Error(msg);
+          });
         }
+        throw new Error(msg);
       },
       (err) => {
         throw new Error(err);

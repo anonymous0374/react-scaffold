@@ -4,7 +4,7 @@ import Header from 'presentationals/Header';
 
 const mapStateToProps = state => ({ user: state.user });
 const mapDispatchToProps = dispatch => ({
-  logout: id => dispatch(logout(id)),
+  logout: () => dispatch(logout()),
   login: credentials => dispatch(login(credentials)),
 });
 
