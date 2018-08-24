@@ -103,7 +103,7 @@ class Login extends React.Component {
           </Col>
         </Row>
         <Row>
-          {msg ? <div className="error-message">{msg}</div> : null}
+          {msg ? <div className="error-message" dangerouslySetInnerHTML={{__html: msg}} /> : null}
         </Row>
         <Row>
           <Col span={12}>

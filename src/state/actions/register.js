@@ -1,4 +1,3 @@
-import { initialState } from 'models/store';
 import { register as registerAPI, abandon as abandonAPI } from 'services/register';
 
 export const REGISTER = 'REGISTER';
@@ -15,21 +14,35 @@ export function register(payload) {
         },
       } = res;
       if (!isNaN(code) && code === 0) {
-        dispatch({
+        return dispatch({
           type: REGISTER,
           payload: {
-            name, email, city, gender, profession, msg,
+            code: 0,
+            msg: `Welcome to our Assets Management System, ${name}!`,
+            auth: {
+              name,
+              email,
+              authenticated: true,
+            },
+            user: {
+              name,
+              city,
+              gender,
+              profession,
+            },
           },
         });
-      } else {
-        dispatch({
-          type: REGISTER,
-          payload: { msg },
-        });
       }
+
+      return dispatch({
+        type: REGISTER,
+        payload: {
+          code: -1, auth: { authenticated: false, name: 'Guest' }, user: {}, msg,
+        },
+      });
     },
     (err) => {
-      console.info(err);
+      throw new Error(err);
     },
   );
 }

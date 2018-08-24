@@ -5,10 +5,13 @@
     font-weight: 600;
     height: 30px;
     line-height: 30px;
+    position: absolute;
+    right: 30px;
+    z-index: 999;
+    width: max-content;
   }
 
   .userName:hover {
-    font-size: 20px;
     color: goldenrod;
     font-weight: 650;
     border-bottom: 2px solid #fff;
@@ -16,8 +19,14 @@
 
   ul {
     list-style: none;
-    position: absolute;
-    z-index: 999;
+    right: 0;
+    text-align: right;
+    list-style-position: inside;
+
+    li {
+      width: max-content;
+      text-align: right;
+    }
 
     li > a {
       color: goldenrod;

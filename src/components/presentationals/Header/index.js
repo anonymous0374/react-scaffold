@@ -12,6 +12,11 @@ export default function Header(props) {
   return (
     <div className="header">
       <div className="menu-item-box">
+        <Link to="/dashboard" className="menu-item">
+          Dashboard
+        </Link>
+      </div>
+      <div className="menu-item-box">
         <Link to="/assets" className="menu-item">
           My Assets
         </Link>

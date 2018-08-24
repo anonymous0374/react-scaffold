@@ -34,7 +34,7 @@ export default class UserStatus extends Component {
           <Link to="/login">Sign In</Link>
         </li>
         <li>
-          <Link to="/register">Not a VIP? Sign Up</Link>
+          <Link to="/register">Not a VIP? Sign Up Now</Link>
         </li>
       </ul>
     );
@@ -44,7 +44,9 @@ export default class UserStatus extends Component {
           <Link to="/user">Profile</Link>
         </li>
         <li>
-          <Link to="/login" onClick={logout}>Sign Out</Link>
+          <Link to="/login" onClick={logout}>
+            Sign Out
+          </Link>
         </li>
       </ul>
     );
@@ -56,7 +58,7 @@ export default class UserStatus extends Component {
           onMouseEnter={this.onMenuHoverIn}
           onMouseLeave={this.onMenuHoverOut}
         >
-          <div>{name}</div>
+          <div style={{ textTransform: 'uppercase' }}>{name}</div>
           {isVip ? vipMenu : guestMenu}
         </div>
       </div>

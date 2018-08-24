@@ -4,12 +4,9 @@ export default function registerReducer(state, action) {
   const { type, payload } = action;
   let rtn = { ...state };
   switch (type) {
-    case REGISTER: {
-      rtn = { ...state, ...payload };
-      break;
-    }
+    case REGISTER:
     case ABANDON: {
-      rtn = { ...state };
+      rtn = { ...state, ...payload };
       break;
     }
     default: {

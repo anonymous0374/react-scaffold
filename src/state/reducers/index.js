@@ -19,8 +19,8 @@ function combineReducers() {
     transitState = { ...transitState, auth, user: { ...authUser } };
     const { assets } = assetsReducer(transitState, payload);
     transitState = { ...transitState, assets };
-    const { user: registerUser } = registerReducer(transitState, payload);
-    transitState = { ...transitState, user: { ...registerUser } };
+    const { auth: registerAuth, user: registerUser } = registerReducer(transitState, payload);
+    transitState = { ...transitState, auth: registerAuth, user: { ...registerUser } };
     const { dashboard } = dashboardReducer(transitState, payload);
     transitState = { ...transitState, dashboard };
     return transitState;

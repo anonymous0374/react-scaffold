@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { login, logout } from 'actions/auth';
 import Header from 'presentationals/Header';
 
@@ -8,7 +9,9 @@ const mapDispatchToProps = dispatch => ({
   login: credentials => dispatch(login(credentials)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Header);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Header),
+);
