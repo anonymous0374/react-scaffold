@@ -5,7 +5,7 @@ import {
 import './style.less';
 
 const { Option } = Select;
-const { FormItem } = Form;
+const { Item: FormItem } = Form;
 const PAYMENT_METHOD = ['cash', "yu'er bao", 'ant credit pay', 'credit card'];
 const PAYMENT_DIRECTION = ['flow in', 'flow out'];
 
@@ -15,6 +15,7 @@ class FlowEventLogger extends Component {
       props: {
         form: { validateFieldsAndScroll },
         log,
+        toggleModal,
       },
     } = this;
 
@@ -23,11 +24,16 @@ class FlowEventLogger extends Component {
         return;
       }
       log(values);
+      toggleModal(); // need to run this method asynchronously
     });
   };
 
   cancelHandler = () => {
+    const {
+      props: { toggleModal },
+    } = this;
     this.form.resetFields();
+    toggleModal(); // need to run this method asynchronously
   };
 
   render() {
@@ -108,7 +114,8 @@ class FlowEventLogger extends Component {
               <FormItem label="Remarks" {...formItemLayout}>
                 {getFieldDecorator('remark', {})(<Input />)}
               </FormItem>
-            </Row>
+            </Row>{' '}
+            */}
           </Card>
         </Form>
       </Modal>

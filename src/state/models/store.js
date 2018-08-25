@@ -26,6 +26,7 @@ export const initialState = {
     Dashboard: [{ name: 'Summary' }],
     Assets: [{ name: 'Bank Accounts Balance' }, { name: 'Real Assets' }, { name: 'stocks' }],
   },
+  cashflows: [],
 };
 
 export const store = createStore(rootReducers, initialState, applyMiddleware(thunk, logger));

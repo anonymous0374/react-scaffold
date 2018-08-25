@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { API_ADD_CASHFLOW_EVENT } from 'configs/codes';
+import { API_ADD_CASHFLOW_EVENT } from 'configs/URIs';
 
-export function log(data) {
+export function logCashflow(data) {
   return axios.post(API_ADD_CASHFLOW_EVENT, {
     params: data,
   });

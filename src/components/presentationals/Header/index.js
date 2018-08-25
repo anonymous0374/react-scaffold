@@ -13,6 +13,7 @@ export default function Header(props) {
     login,
     user,
     location: { pathname },
+    toggleModal,
   } = props;
   return (
     <div className="header">
@@ -50,7 +51,9 @@ export default function Header(props) {
         </Link>
       </div>
       <div className="menu-item-box">
-        <Link to="/#">Log</Link>
+        <Link to="/#" onClick={toggleModal}>
+          Log
+        </Link>
       </div>
 
       <div className="user">
