@@ -1,38 +1,37 @@
-import React, { Component } from "react";
-import { Form, Button, Input, Row, Col, Card, Icon, Tooltip } from "antd";
-import "./style.less";
+import React, { Component } from 'react';
+import {
+  Form, Button, Input, Row, Col, Card, Icon, Select,
+} from 'antd';
+import './style.less';
 
-const FormItem = Form.Item;
+const { Item: FormItem } = Form;
+const { Option } = Select;
+const GENDER = ['Male', 'Female', 'Keep it Private'];
 
 class RegisterForm extends Component {
-  submitHandler = e => {
+  submitHandler = (e) => {
     e.preventDefault();
     const {
       props: {
         form: { validateFieldsAndScroll },
-        register
-      }
+        register,
+      },
     } = this;
 
     validateFieldsAndScroll((err, values) => {
       if (!err) {
         const {
-          userName: name,
-          password,
-          email,
-          city,
-          profession,
-          gender
+          userName: name, password, email, city, profession, gender,
         } = values;
         const basicInfo = {
           name,
           password,
-          email
+          email,
         };
         const extraInfo = {
           city,
           gender,
-          profession
+          profession,
         };
         register({ basicInfo, extraInfo });
       }
@@ -41,7 +40,7 @@ class RegisterForm extends Component {
 
   cancelHandler = () => {
     const {
-      props: { form }
+      props: { form },
     } = this;
     form.resetFields();
   };
@@ -49,18 +48,18 @@ class RegisterForm extends Component {
   render() {
     const {
       props: {
-        form: { getFieldDecorator }
-      }
+        form: { getFieldDecorator },
+      },
     } = this;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
-        sm: { span: 8 }
+        sm: { span: 8 },
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 16 }
-      }
+        sm: { span: 16 },
+      },
     };
     return (
       <Form onSubmit={this.submitHandler} className="form">
@@ -69,82 +68,69 @@ class RegisterForm extends Component {
         </div>
         <Card title="Your Basic Information Here:">
           <FormItem label="User Name" layout="horizontal" {...formItemLayout}>
-            {getFieldDecorator("userName", {
-              rules: [{ required: true, message: "Please input a User Name" }]
+            {getFieldDecorator('userName', {
+              rules: [{ required: true, message: 'Please input a User Name' }],
             })(
               <Input
                 placeholder="User Name"
-                prefix={
-                  <Icon type="user" style={{ color: "rgba(0.0.0,.25)" }} />
-                }
-              />
+                prefix={<Icon type="user" style={{ color: 'rgba(0.0.0,.25)' }} />}
+              />,
             )}
           </FormItem>
           <FormItem label="Email" {...formItemLayout}>
-            {getFieldDecorator("email", {
+            {getFieldDecorator('email', {
               rules: [
                 {
-                  type: "email",
-                  message: "Sorry, the email address is invalid"
-                }
-              ]
-            })(
-              <Input
-                placeholder="Your Email Address"
-                title="We'll Send you Valuable Emails"
-              />
-            )}
+                  type: 'email',
+                  message: 'Sorry, the email address is invalid',
+                },
+              ],
+            })(<Input placeholder="Your Email Address" title="We'll Send you Valuable Emails" />)}
           </FormItem>
           <FormItem label="Password" {...formItemLayout}>
-            {getFieldDecorator("password", {
-              rules: [{ required: true, message: "Please input a Password" }]
+            {getFieldDecorator('password', {
+              rules: [{ required: true, message: 'Please input a Password' }],
             })(
               <Input
                 placeholder="Password"
                 type="password"
-                prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
-              />
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              />,
             )}
           </FormItem>
           <FormItem label="Confirm Password" {...formItemLayout}>
-            {getFieldDecorator("confirm", {
-              rules: [
-                { required: true, message: "Please confirm your Password" }
-              ]
+            {getFieldDecorator('confirm', {
+              rules: [{ required: true, message: 'Please confirm your Password' }],
             })(
               <Input
                 placeholder="Please type the Password again"
                 type="password"
                 title="Two passwords must be identical"
-                prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
-              />
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              />,
             )}
           </FormItem>
         </Card>
         <Card title="Your are Welcome to Provide some Other Infomation to US:">
           <FormItem label="Residential City" {...formItemLayout}>
-            {getFieldDecorator("city")(
-              <Input
-                placeholder="Your Residential City"
-                title="We'll Keep it Private"
-              />
+            {getFieldDecorator('city')(
+              <Input placeholder="Your Residential City" title="We'll Keep it Private" />,
             )}
           </FormItem>
           <FormItem label="Profession" {...formItemLayout}>
-            {getFieldDecorator("profession")(
-              <Input
-                placeholder="Your Profession"
-                title="We'll Keep it Private"
-              />
+            {getFieldDecorator('profession')(
+              <Input placeholder="Your Profession" title="We'll Keep it Private" />,
             )}
           </FormItem>
           <FormItem label="Gender" {...formItemLayout}>
-            {getFieldDecorator("gender")(
-              <Input placeholder="Your Gender" title="We'll Keep it Private" />
+            {getFieldDecorator('gender')(
+              <Select title="We'll Keep it Private">
+                {GENDER.map(item => (
+                  <Option key={item} value={item}>
+                    {item}
+                  </Option>
+                ))}
+              </Select>,
             )}
           </FormItem>
         </Card>
@@ -153,17 +139,14 @@ class RegisterForm extends Component {
             <Col span={10}>
               <Button
                 type="primary"
-                style={{ float: "right", marginRight: "10px" }}
+                style={{ float: 'right', marginRight: '10px' }}
                 onClick={this.submitHandler}
               >
                 Submit
               </Button>
             </Col>
             <Col span={14}>
-              <Button
-                style={{ float: "left", marginLeft: "10px" }}
-                onClick={this.cancelHandler}
-              >
+              <Button style={{ float: 'left', marginLeft: '10px' }} onClick={this.cancelHandler}>
                 Let me Think for a Moment
               </Button>
             </Col>

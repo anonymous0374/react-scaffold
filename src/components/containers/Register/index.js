@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import Header from 'containers/Header';
 import RegisterForm from 'presentationals/Register';
 import { register } from 'actions/register';
-import { Redirect } from 'react-router-dom';
 
 function Register(props) {
   const {
@@ -14,6 +15,7 @@ function Register(props) {
   } = props;
   return (
     <Fragment>
+      <Header />
       <RegisterForm auth={auth} user={user} register={register} />
       {registerDone ? (
         <Redirect to="/dashboard" />

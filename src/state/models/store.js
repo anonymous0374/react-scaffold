@@ -22,6 +22,10 @@ export const initialState = {
     mockData: null,
   },
   assets: [],
+  menus: {
+    Dashboard: [{ name: 'Summary' }],
+    Assets: [{ name: 'Bank Accounts Balance' }, { name: 'Real Assets' }, { name: 'stocks' }],
+  },
 };
 
 export const store = createStore(rootReducers, initialState, applyMiddleware(thunk, logger));

@@ -49,6 +49,9 @@ export default function Header(props) {
           Investments
         </Link>
       </div>
+      <div className="menu-item-box">
+        <Link to="/#">Log</Link>
+      </div>
 
       <div className="user">
         <UserStatus logout={logout} login={login} user={user} />
