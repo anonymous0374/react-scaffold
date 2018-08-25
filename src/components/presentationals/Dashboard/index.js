@@ -9,7 +9,9 @@ export default function Dashboard(props) {
   const elemGuest = (
     <div className="guest">
       <article>
-        <h1>Welcome to the Assets Management System</h1>
+        <div className="title">
+          <div>Welcome to the Assets Management System</div>
+        </div>
         <p>
           &nbsp;&nbsp;&nbsp;&nbsp;AMS is a private finance assistant program. It helps you to
           oversee your <b>assets, cashflow, and investment situations</b> by creating{' '}
