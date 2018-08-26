@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Modal, Form, Button, Input, Calendar, Select, Row, Col, Card,
+  Modal, Form, Button, Input, DatePicker, Select, Row,
 } from 'antd';
 import './style.less';
 
@@ -30,9 +30,12 @@ class FlowEventLogger extends Component {
 
   cancelHandler = () => {
     const {
-      props: { toggleModal },
+      props: {
+        toggleModal,
+        form: { resetFields },
+      },
     } = this;
-    this.form.resetFields();
+    resetFields();
     toggleModal(); // need to run this method asynchronously
   };
 
@@ -57,7 +60,7 @@ class FlowEventLogger extends Component {
 
     return (
       <Modal
-        title="Basic Modal"
+        title="Log your Cashflow"
         visible={visible}
         onOk={this.confirmHandler}
         onCancel={this.cancelHandler}
@@ -71,52 +74,49 @@ class FlowEventLogger extends Component {
         ]}
       >
         <Form className="form" onSubmit={log}>
-          <Card title="Please Input a Cash flow" bordered={false} style={{ width: '90%' }}>
-            <Row>
-              <FormItem label="Amount" {...formItemLayout}>
-                {getFieldDecorator('amount', {
-                  rules: [{ required: true, message: 'Please input the amount' }],
-                })(<Input />)}
-              </FormItem>
-            </Row>
-            <Row>
-              <FormItem label="Payment Method" {...formItemLayout}>
-                {getFieldDecorator('paymentMethod')(
-                  <Select>
-                    {PAYMENT_METHOD.map(item => (
-                      <Option key={item} value={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>,
-                )}
-              </FormItem>
-            </Row>
-            <Row>
-              <FormItem label="Direction" {...formItemLayout}>
-                {getFieldDecorator('direction')(
-                  <Select>
-                    {PAYMENT_DIRECTION.map(item => (
-                      <Option key={item} value={item}>
-                        {item}
-                      </Option>
-                    ))}
-                  </Select>,
-                )}
-              </FormItem>
-            </Row>
-            <Row>
-              <FormItem label="Payment Due Date" {...formItemLayout}>
-                {getFieldDecorator('dueDate', {})(<Calendar />)}
-              </FormItem>
-            </Row>
-            <Row>
-              <FormItem label="Remarks" {...formItemLayout}>
-                {getFieldDecorator('remark', {})(<Input />)}
-              </FormItem>
-            </Row>{' '}
-            */}
-          </Card>
+          <Row>
+            <FormItem label="Amount" {...formItemLayout}>
+              {getFieldDecorator('amount', {
+                rules: [{ required: true, message: 'Please input the amount' }],
+              })(<Input />)}
+            </FormItem>
+          </Row>
+          <Row>
+            <FormItem label="Payment Method" {...formItemLayout}>
+              {getFieldDecorator('paymentMethod')(
+                <Select>
+                  {PAYMENT_METHOD.map(item => (
+                    <Option key={item} value={item}>
+                      {item}
+                    </Option>
+                  ))}
+                </Select>,
+              )}
+            </FormItem>
+          </Row>
+          <Row>
+            <FormItem label="Direction" {...formItemLayout}>
+              {getFieldDecorator('direction')(
+                <Select>
+                  {PAYMENT_DIRECTION.map(item => (
+                    <Option key={item} value={item}>
+                      {item}
+                    </Option>
+                  ))}
+                </Select>,
+              )}
+            </FormItem>
+          </Row>
+          <Row>
+            <FormItem label="Payment Due Date" {...formItemLayout}>
+              {getFieldDecorator('dueDate', {})(<DatePicker />)}
+            </FormItem>
+          </Row>
+          <Row>
+            <FormItem label="Remarks" {...formItemLayout}>
+              {getFieldDecorator('remark', {})(<Input />)}
+            </FormItem>
+          </Row>
         </Form>
       </Modal>
     );

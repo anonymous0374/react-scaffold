@@ -51,9 +51,7 @@ export default function Header(props) {
         </Link>
       </div>
       <div className="menu-item-box">
-        <Link to="/#" onClick={toggleModal}>
-          Log
-        </Link>
+        <label onClick={toggleModal}>Log</label>
       </div>
 
       <div className="user">

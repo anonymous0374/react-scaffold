@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from 'containers/Header';
 import './style.less';
 
 export default function Dashboard(props) {
@@ -23,12 +22,5 @@ export default function Dashboard(props) {
   const elemVip = <div className="vip" />;
   const isVip = name && name !== 'Guest';
 
-  return (
-    <div className="dashboard">
-      <Header />
-      {isVip ? elemVip : elemGuest}
-    </div>
-  );
-
-  /* return <span>hello world!</span>; */
+  return <div className="dashboard">{isVip ? elemVip : elemGuest}</div>;
 }

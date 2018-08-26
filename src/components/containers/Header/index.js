@@ -24,15 +24,24 @@ class HeaderContainer extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.info('nextProps: ', nextProps, ', nextState: ', nextState);
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.info('current state: ', this.state);
+  }
+
   toggleModal = () => {
     const {
       state: { visible },
     } = this;
     if (visible) {
       this.setState(() => ({ visible: false }));
+      return;
     }
     this.setState(() => ({ visible: true }));
-    console.info(this, this.state);
   };
 
   render() {
@@ -40,7 +49,6 @@ class HeaderContainer extends Component {
       state: { visible },
       props,
     } = this;
-
     return (
       <Fragment>
         <Header {...props} toggleModal={this.toggleModal} />
