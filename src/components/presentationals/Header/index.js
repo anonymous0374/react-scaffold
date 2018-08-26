@@ -51,7 +51,9 @@ export default function Header(props) {
         </Link>
       </div>
       <div className="menu-item-box">
-        <label onClick={toggleModal}>Log</label>
+        <span onClick={toggleModal} style={{ color: '#fff' }}>
+          Log
+        </span>
       </div>
 
       <div className="user">
