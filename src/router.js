@@ -17,7 +17,7 @@ function Routes(props) {
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   const RestrictedCashflow = getRestrictedComponent(authenticated, Cashflow);
-  
+
   return (
     <Router>
       <Switch>
