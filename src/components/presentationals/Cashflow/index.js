@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Table, Row, Calendar, DatePicker, Form,
 } from 'antd';
+import { capitalizeFirstLetter } from 'utilities/string';
+import moment from 'moment';
 
 export default function Cashflow(props) {
   const { cashflows } = props;
@@ -10,6 +12,7 @@ export default function Cashflow(props) {
       title: 'Date Time',
       dataIndex: 'dateTime',
       rowKey: 'dateTime',
+      render: text => moment(text).format('MMM Do YYYY, hh:mm:ss a'),
     },
     {
       title: 'Amount',
@@ -20,6 +23,7 @@ export default function Cashflow(props) {
       title: 'Flow Direction',
       dataIndex: 'direction',
       rowKey: 'direction',
+      render: text => `Cash ${capitalizeFirstLetter(text)}`,
     },
     {
       title: 'Payment Method',

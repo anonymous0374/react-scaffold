@@ -17,13 +17,14 @@ function Routes(props) {
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   const RestrictedCashflow = getRestrictedComponent(authenticated, Cashflow);
+  
   return (
     <Router>
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
         <Route
           path="/login"
-          render={() => (authenticated ? <Redirect to="/assets" /> : <Login />)}
+          render={() => (authenticated ? <Redirect to="/" /> : <Login />)}
         />
         <Route path="/assets" render={() => <RestrictedAssets />} />
         <Route path="/register" exact component={Register} />

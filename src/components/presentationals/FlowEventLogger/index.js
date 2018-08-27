@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Modal, Form, Button, Input, DatePicker, Select, Row,
+  Modal, Form, Button, Input, DatePicker, Select, Row, Switch,
 } from 'antd';
 import moment from 'moment';
 import './style.less';
@@ -9,7 +9,7 @@ import { capitalizeFirstLetter } from 'utilities/string';
 const { Option } = Select;
 const { Item: FormItem } = Form;
 const PAYMENT_METHOD = ['cash', "yu'er bao", 'ant credit pay', 'credit card'];
-const PAYMENT_DIRECTION = ['flow in', 'flow out'];
+const PAYMENT_DIRECTION = ['Out', 'In'];
 
 class FlowEventLogger extends Component {
   confirmHandler = () => {
@@ -25,6 +25,7 @@ class FlowEventLogger extends Component {
       if (err) {
         return;
       }
+      values.direction ? (values.direction = 'out') : (values.direction = 'in');
       log(values);
       toggleModal();
       /*
@@ -109,16 +110,9 @@ class FlowEventLogger extends Component {
           <Row>
             <FormItem label="Direction" {...formItemLayout}>
               {getFieldDecorator('direction', {
+                initialValue: true,
                 rules: [{ required: true, message: 'Please input the payment method.' }],
-              })(
-                <Select>
-                  {PAYMENT_DIRECTION.map(item => (
-                    <Option key={item} value={item}>
-                      {capitalizeFirstLetter(item)}
-                    </Option>
-                  ))}
-                </Select>,
-              )}
+              })(<Switch checkedChildren="Out" unCheckedChildren="In" />)}
             </FormItem>
           </Row>
           <Row>
