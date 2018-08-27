@@ -2,6 +2,7 @@ import authReducer from 'reducers/auth';
 import assetsReducer from 'reducers/assets';
 import registerReducer from 'reducers/register';
 import dashboardReducer from 'reducers/dashboard';
+import cashflowReducer from 'reducers/cashflow';
 
 /**
  * combineReducers function returns a function who invokes all interested reducers
@@ -23,6 +24,8 @@ function combineReducers() {
     transitState = { ...transitState, auth: registerAuth, user: { ...registerUser } };
     const { dashboard } = dashboardReducer(transitState, payload);
     transitState = { ...transitState, dashboard };
+    const { cashflows } = cashflowReducer(transitState, payload);
+    transitState = { ...transitState, cashflows };
     return transitState;
   };
 }

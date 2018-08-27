@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ADD_CASHFLOW_EVENT } from 'configs/URIs';
+import { API_ADD_CASHFLOW_EVENT, API_GET_CASHFLOW } from 'configs/URIs';
 
 export function logCashflow(data) {
   return axios.post(API_ADD_CASHFLOW_EVENT, {
@@ -7,4 +7,6 @@ export function logCashflow(data) {
   });
 }
 
-export function placeHolder() {}
+export function getCashflow(dataRange) {
+  return axios.post(API_GET_CASHFLOW, { params: dataRange });
+}

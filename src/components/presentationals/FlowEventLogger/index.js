@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   Modal, Form, Button, Input, DatePicker, Select, Row,
 } from 'antd';
+import moment from 'moment';
 import './style.less';
+import {capitalizeFirstLetter} from 'utilities/string'
 
 const { Option } = Select;
 const { Item: FormItem } = Form;
@@ -68,7 +70,7 @@ class FlowEventLogger extends Component {
           <Button key="back" onClick={this.cancelHandler}>
             Cancel
           </Button>,
-          <Button key="submit" type="primary" onClick={this.confirmHandle}>
+          <Button key="submit" type="primary" onClick={this.confirmHandler}>
             Submit
           </Button>,
         ]}
@@ -87,7 +89,7 @@ class FlowEventLogger extends Component {
                 <Select>
                   {PAYMENT_METHOD.map(item => (
                     <Option key={item} value={item}>
-                      {item}
+                      {capitalizeFirstLetter(item)}
                     </Option>
                   ))}
                 </Select>,
@@ -100,7 +102,7 @@ class FlowEventLogger extends Component {
                 <Select>
                   {PAYMENT_DIRECTION.map(item => (
                     <Option key={item} value={item}>
-                      {item}
+                      {capitalizeFirstLetter(item)}
                     </Option>
                   ))}
                 </Select>,
@@ -109,7 +111,7 @@ class FlowEventLogger extends Component {
           </Row>
           <Row>
             <FormItem label="Payment Due Date" {...formItemLayout}>
-              {getFieldDecorator('dueDate', {})(<DatePicker />)}
+              {getFieldDecorator('dueDate', {initialValue: new moment()})(<DatePicker />)}
             </FormItem>
           </Row>
           <Row>

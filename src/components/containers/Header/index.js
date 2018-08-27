@@ -24,15 +24,6 @@ class HeaderContainer extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.info('nextProps: ', nextProps, ', nextState: ', nextState);
-    return true;
-  }
-
-  componentDidUpdate() {
-    console.info('current state: ', this.state);
-  }
-
   toggleModal = () => {
     const {
       state: { visible },

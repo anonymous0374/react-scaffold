@@ -7,3 +7,4 @@ export const API_GETASSETS = '/ams/assets';
 export const API_GET_USER = '/ams/user/get';
 export const API_REFRESH_DASHBOARD = '/ams/dashboard';
 export const API_ADD_CASHFLOW_EVENT = '/ams/cashflow/add';
+export const API_GET_CASHFLOW = '/ams/cashflow';

@@ -10,6 +10,7 @@ import Login from 'containers/Auth';
 import Assets from 'containers/Assets';
 import Register from 'containers/Register';
 import Dashboard from 'containers/Dashboard';
+import Cashflow from 'containers/Cashflow'
 import getRestrictedComponent from 'hocs/RestrictedComponent';
 
 function Routes(props) {
@@ -29,6 +30,7 @@ function Routes(props) {
         <Route path="/assets" render={() => <RestrictedAssets />} />
         <Route path="/register" exact component={Register} />
         <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/cashflow" exact component={Cashflow} />
         <Route path="*" render={() => <span>404 Page Not Found</span>} />
       </Switch>
     </Router>
