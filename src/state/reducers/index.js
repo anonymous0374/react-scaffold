@@ -6,7 +6,7 @@ import cashflowReducer from 'reducers/cashflow';
 
 /**
  * combineReducers function returns a function who invokes all interested reducers
- * with current state(of the whole app) and payload, and returns the resulting
+ * with current state(of the whole app) and action, and returns the resulting
  * state(of the whole app)
  * Therefore, what combineReducers function returns  is a so called "root reducer"
  * This file exports this root reducer.
@@ -14,17 +14,17 @@ import cashflowReducer from 'reducers/cashflow';
  * I call the returned object "transitState" because it's a changing, temporary state
  */
 function combineReducers() {
-  return (state, payload) => {
+  return (state, action) => {
     let transitState = { ...state };
-    const { auth, user: authUser } = authReducer(transitState, payload);
+    const { auth, user: authUser } = authReducer(transitState, action);
     transitState = { ...transitState, auth, user: { ...authUser } };
-    const { assets } = assetsReducer(transitState, payload);
+    const { assets } = assetsReducer(transitState, action);
     transitState = { ...transitState, assets };
-    const { auth: registerAuth, user: registerUser } = registerReducer(transitState, payload);
+    const { auth: registerAuth, user: registerUser } = registerReducer(transitState, action);
     transitState = { ...transitState, auth: registerAuth, user: { ...registerUser } };
-    const { dashboard } = dashboardReducer(transitState, payload);
+    const { dashboard } = dashboardReducer(transitState, action);
     transitState = { ...transitState, dashboard };
-    const { cashflows } = cashflowReducer(transitState, payload);
+    const { cashflows } = cashflowReducer(transitState, action);
     transitState = { ...transitState, cashflows };
     return transitState;
   };

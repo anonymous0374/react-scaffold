@@ -43,7 +43,7 @@ class HeaderContainer extends Component {
     return (
       <Fragment>
         <Header {...props} toggleModal={this.toggleModal} />
-        <FlowEventLogger visible={visible} log={log} toggleModal={this.toggleModal} />
+        <FlowEventLogger visible={visible} log={props.log} toggleModal={this.toggleModal} />
       </Fragment>
     );
   }

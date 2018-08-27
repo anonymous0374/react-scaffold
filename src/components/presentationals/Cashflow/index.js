@@ -2,47 +2,51 @@ import React from 'react';
 import {
   Table, Row, Calendar, DatePicker, Form,
 } from 'antd';
-import Header from 'containers/Header';
 
 export default function Cashflow(props) {
-  const { events } = props;
+  const { cashflows } = props;
   const columns = [
     {
       title: 'Date Time',
       dataIndex: 'dateTime',
-      key: 'dateTime',
+      rowKey: 'dateTime',
     },
     {
       title: 'Amount',
       dataIndex: 'amount',
-      key: 'amount',
+      rowKey: 'amount',
     },
     {
       title: 'Flow Direction',
       dataIndex: 'direction',
-      key: 'direction',
+      rowKey: 'direction',
     },
     {
       title: 'Payment Method',
       dataIndex: 'paymentMethod',
-      key: 'paymentMethod',
+      rowKey: 'paymentMethod',
     },
     {
       title: 'Due Date',
       dataIndex: 'dueDate',
-      key: 'dueDate',
+      rowKey: 'dueDate',
     },
     {
       title: 'Remark',
       dataIndex: 'remark',
-      key: 'remark',
+      rowKey: 'remark',
     },
   ];
 
   return (
     <div>
-      <Header />
-      <Table dataSource={events} columns={columns} />
+      <Table
+        dataSource={cashflows.map((item, index) => {
+          item.key = index;
+          return item;
+        })}
+        columns={columns}
+      />
     </div>
   );
 }

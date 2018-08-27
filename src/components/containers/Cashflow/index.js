@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Cashflow from 'presentationals/Cashflow';
+import Header from 'containers/Header';
 import { logCashflow, getCashflow } from 'actions/cashflow';
 
 class CashflowContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    getCashflow();
+    const {
+      props: { get },
+    } = this;
+    get();
   }
 
   render() {
-    return <Cashflow />;
+    const { props } = this;
+    return (
+      <div>
+        <Header />
+        <Cashflow {...props} />
+      </div>
+    );
   }
 }
 
-function mapStateToProps(State) {
+function mapStateToProps(state) {
   return {
-    cashflows: State.cashflows,
+    auth: state.auth,
+    cashflows: state.cashflows,
   };
 }
 
@@ -33,4 +40,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Cashflow);
+)(CashflowContainer);

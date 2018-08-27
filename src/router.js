@@ -1,16 +1,13 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
+  BrowserRouter as Router, Route, Switch, Redirect,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Login from 'containers/Auth';
 import Assets from 'containers/Assets';
 import Register from 'containers/Register';
 import Dashboard from 'containers/Dashboard';
-import Cashflow from 'containers/Cashflow'
+import Cashflow from 'containers/Cashflow';
 import getRestrictedComponent from 'hocs/RestrictedComponent';
 
 function Routes(props) {
@@ -19,6 +16,7 @@ function Routes(props) {
   } = props;
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
+  const RestrictedCashflow = getRestrictedComponent(authenticated, Cashflow);
   return (
     <Router>
       <Switch>
@@ -30,7 +28,7 @@ function Routes(props) {
         <Route path="/assets" render={() => <RestrictedAssets />} />
         <Route path="/register" exact component={Register} />
         <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/cashflow" exact component={Cashflow} />
+        <Route path="/cashflow" exact render={() => <RestrictedCashflow />} />
         <Route path="*" render={() => <span>404 Page Not Found</span>} />
       </Switch>
     </Router>

@@ -4,7 +4,7 @@ import {
 } from 'antd';
 import moment from 'moment';
 import './style.less';
-import {capitalizeFirstLetter} from 'utilities/string'
+import { capitalizeFirstLetter } from 'utilities/string';
 
 const { Option } = Select;
 const { Item: FormItem } = Form;
@@ -26,7 +26,17 @@ class FlowEventLogger extends Component {
         return;
       }
       log(values);
-      toggleModal(); // need to run this method asynchronously
+      toggleModal();
+      /*
+      log(values).then(
+        (res) => {
+          toggleModal(); // need to run this method asynchronously
+        },
+        (err) => {
+          throw new Error(err);
+        },
+      );
+      */
     });
   };
 
@@ -98,7 +108,9 @@ class FlowEventLogger extends Component {
           </Row>
           <Row>
             <FormItem label="Direction" {...formItemLayout}>
-              {getFieldDecorator('direction')(
+              {getFieldDecorator('direction', {
+                rules: [{ required: true, message: 'Please input the payment method.' }],
+              })(
                 <Select>
                   {PAYMENT_DIRECTION.map(item => (
                     <Option key={item} value={item}>
@@ -111,7 +123,7 @@ class FlowEventLogger extends Component {
           </Row>
           <Row>
             <FormItem label="Payment Due Date" {...formItemLayout}>
-              {getFieldDecorator('dueDate', {initialValue: new moment()})(<DatePicker />)}
+              {getFieldDecorator('dueDate', { initialValue: new moment() })(<DatePicker />)}
             </FormItem>
           </Row>
           <Row>

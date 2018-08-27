@@ -31,7 +31,6 @@ export default function assetsReducer(state, action) {
     }
     case GET_ASSETS: {
       console.info('payload: ', payload);
-      // rtn = [...res];
       break;
     }
     case GOTO_LOGIN: {

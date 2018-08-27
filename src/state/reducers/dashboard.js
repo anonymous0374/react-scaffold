@@ -2,9 +2,10 @@ import { REFRESH_DASHBOARD } from 'actions/dashboard';
 
 export default function dashboardReducer(state, action) {
   let rtn = { ...state };
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case REFRESH_DASHBOARD: {
-      const { mockData, msg } = action.payload;
+      const { mockData, msg } = payload;
       rtn = {
         ...state,
         mockData,
