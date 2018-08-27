@@ -20,16 +20,31 @@
 
   .menu-item-box {
     height: 30px;
-    margin-right: 10px;
     line-height: 30px;
+    margin-right: 10px;
     font-size: 18px;
     font-weight: 600;
     margin-top: 16px;
+
+    .menu-item {
+      color: #fff;
+    }
+
+    .menu-item::after {
+      content: "|";
+      color: #ddd;
+      opacity: 0.8;
+      position: relative;
+      margin-left: 5px;
+    }
+
+    .last-item::after {
+      content: none;
+    }
   }
 
   a {
     color: #fff;
-    margin-right: 10px;
   }
 
   a:hover {
@@ -39,9 +54,14 @@
   .menu-item-box:hover {
     border-bottom: 2px solid #fff;
 
-    a {
+    a,
+    span {
       color: goldenrod;
     }
+  }
+
+  .menu-items:last-child::after {
+    content: none;
   }
 
   .user {

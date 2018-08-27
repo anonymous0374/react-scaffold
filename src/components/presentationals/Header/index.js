@@ -51,11 +51,18 @@ export default function Header(props) {
         </Link>
       </div>
       <div className="menu-item-box">
-        <span onClick={toggleModal} style={{ color: '#fff' }}>
+        <span onClick={toggleModal} className="menu-item">
           Log
         </span>
       </div>
-
+      <div
+        className="menu-item-box"
+        style={pathname === '/debt' ? { borderBottom: '2px solid goldenrod' } : {}}
+      >
+        <Link to="/debt" className="menu-item last-item">
+          Debt
+        </Link>
+      </div>
       <div className="user">
         <UserStatus logout={logout} login={login} user={user} />
       </div>
