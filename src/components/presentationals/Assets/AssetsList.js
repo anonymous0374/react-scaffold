@@ -12,7 +12,6 @@ export default function AssetsList(props) {
     { title: 'Worth', dataIndex: 'price', key: 'worth' },
     { title: 'Description', dataIndex: 'description', key: 'description' },
   ];
-  console.info(assets);
 
   return (
     <div>

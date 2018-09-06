@@ -11,9 +11,10 @@ export default function cashflowReducer(state, action) {
     }
     case GET_CASHFLOW: {
       rtn = { ...rtn, cashflows: [...payload] };
+      break;
     }
     default: {
-      // do nothing here
+      break;
     }
   }
 

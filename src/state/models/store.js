@@ -27,6 +27,7 @@ export const initialState = {
     Assets: [{ name: 'Bank Accounts Balance' }, { name: 'Real Assets' }, { name: 'stocks' }],
   },
   cashflows: [],
+  history: [],
 };
 
 export const store = createStore(rootReducers, initialState, applyMiddleware(thunk, logger));

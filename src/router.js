@@ -13,15 +13,21 @@ import getRestrictedComponent from 'hocs/RestrictedComponent';
 function Routes(props) {
   const {
     auth: { authenticated },
+    history,
   } = props;
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   const RestrictedCashflow = getRestrictedComponent(authenticated, Cashflow);
+  const historyArray = history.length > 0 ? JSON.parse(history) : ['/dashboard'];
+  const lastLocation = historyArray.slice(-1)[0];
+  const { location: { origin } } = window;
+  const lastPath = lastLocation.replace(origin, '');
+  console.info('react history: ', history, ' last locatoin: ', lastLocation);
 
   return (
     <Router>
       <Switch>
-        <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
+        <Route path="/" exact render={() => <Redirect to={lastPath} />} />
         <Route
           path="/login"
           render={() => (authenticated ? <Redirect to="/" /> : <Login />)}
@@ -38,6 +44,7 @@ function Routes(props) {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  history: state.history,
 });
 
 // connect Routes to auth section

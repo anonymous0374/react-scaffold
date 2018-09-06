@@ -9,8 +9,7 @@ export function logCashflow(args) {
     addCashflowEvent(args).then(
       (res) => {
         const {
-          data,
-          data: { code },
+          data: { code, msg },
         } = res;
         if (!isNaN(code) && code === 0) {
           dispatch({
@@ -38,13 +37,13 @@ export function getCashflow(dateRange) {
       (res) => {
         const {
           data,
-          data: { code, ...rest },
+          data: { code, history, ...rest },
         } = res;
         if (!isNaN(code) && code === 0) {
           const cashflow = Object.keys(rest).map(key => data[key]);
           dispatch({
             type: GET_CASHFLOW,
-            payload: cashflow,
+            payload: { cashflow, history },
           });
         } else {
           dispatch({

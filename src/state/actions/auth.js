@@ -71,7 +71,7 @@ export function getUser() {
       (res) => {
         const {
           data: {
-            code, msg, name: userName, email, city, profession, gender,
+            code, msg, name: userName, email, city, profession, gender, history,
           },
         } = res;
 
@@ -87,6 +87,7 @@ export function getUser() {
                 city,
                 gender,
               },
+              history,
             },
           });
         }

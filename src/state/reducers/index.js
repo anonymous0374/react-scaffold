@@ -16,16 +16,18 @@ import cashflowReducer from 'reducers/cashflow';
 function combineReducers() {
   return (state, action) => {
     let transitState = { ...state };
-    const { auth, user: authUser } = authReducer(transitState, action);
-    transitState = { ...transitState, auth, user: { ...authUser } };
-    const { assets } = assetsReducer(transitState, action);
-    transitState = { ...transitState, assets };
+    const { auth, user: authUser, history: authHistory } = authReducer(transitState, action);
+    transitState = {
+      ...transitState, auth, user: { ...authUser }, history: authHistory,
+    };
+    const { assets, history: assetsHistory } = assetsReducer(transitState, action);
+    transitState = { ...transitState, assets, history: assetsHistory };
     const { auth: registerAuth, user: registerUser } = registerReducer(transitState, action);
     transitState = { ...transitState, auth: registerAuth, user: { ...registerUser } };
     const { dashboard } = dashboardReducer(transitState, action);
     transitState = { ...transitState, dashboard };
-    const { cashflows } = cashflowReducer(transitState, action);
-    transitState = { ...transitState, cashflows };
+    const { cashflows, history: cashflowHistory } = cashflowReducer(transitState, action);
+    transitState = { ...transitState, cashflows, history: cashflowHistory };
     return transitState;
   };
 }
