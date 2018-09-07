@@ -1,28 +1,43 @@
 # React Learnning Notes
 
 ## What is React?
-  React is a JS library for building User Interfaces.
+  React is a JS library for building User Interfaces:
+  ### User Interface coupled the aspects below:
+  1. How it looks --> rendering
+  2. How it interacts --> event handling
+  3. How it's divided into pieces and combined together
+    -->inner state, and props, extension, and composition
 
 ## Characteristics of React?
-  1.  Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
+  1. Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
 the web application.
+--> Here declarative is an important concept
+--> Declarative v.s. Imperative
+Declarative programming **describes** what you **want**, instead of writing
+a step-by-step statements on **how** you get it.
   2. It's Component-Based, build encapsulated components that manage their own
 state, then compose them to make complex UIs.
+  3. ReactJS is all about data flow one-way down
 
 ## Essential Concepts of React
   ### JSX and React Element
     a. Why JSX?
-      > React embraces the fact that rendering logic is inherently coupled with
-    other UI logic:
-        >> how events are handled
-        >> how the state changes over time
-        >> and how the data is prepared for display
+      > React embraces the fact that user interface is inherently coupled with
+    these matters:
+        >> how the UI looks like --> rendering
+        >> how events are handled --> events
+        >> how the state changes over time --> state management
+        >> and how the data is prepared for display --> state and lifecycle
       > Instead of separates technologies by putting markup and logic in
     separate files, JSX itself can express UI(View), Behavior(Events) and
     State(State) altogether. (JSX looks like both HTML and JavaScript).
       > React Components are built on top of JSX.
       > Since JSX contains information on all View / Events / State, JSX codes
     are easily get verbose(It works as both HTML and JavaScript).
+        --> therefore, in practice JSX codes are separated into:
+          (1) "presentationals": fully controlled components, no inner states
+          (2) "containers": work as container, that provide control(props and
+        event handlers)to their children.
     b. What is JSX?
       > JSX is a syntax extension to JavaScript
       > JSX can look like both HTML and JavaScript, but it's neither of them.
@@ -40,7 +55,7 @@ state, then compose them to make complex UIs.
       you want to see on the screen.
       > Unlike browser DOM elements:
         >> React elements are plain objects, they're cheap to create
-        >> React DOM takes care of updating the DOM to match the React elements.
+        >> ReactDOM takes care of updating the DOM to match the React elements.
         >> React elements are immutable. Once you create an element, you can't
         change its children or attributes. An element is like a single frame in
         a movie: it represents the UI at a certain point in time.
@@ -64,9 +79,8 @@ state, then compose them to make complex UIs.
       props.
   ### Component instance variables: State and Props, the Data Flows ONE-WAY Down
     a. What are State and Props
-      > Props are the input of a Component, Component outputs an React Element
-      based on the Props. Component acts as pure functions with respect to the
-      props.
+      > Props are the input of a Component, and immutable. Component acts as a
+      pure function with respect to the props and returns an React Element.
       > Component "owns" the State. Neither parent nor child components can know
       if a certain component is stateful or stateless, and they shouldn't care
       whether it is defined as a function or a class
