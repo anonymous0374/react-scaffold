@@ -1,12 +1,14 @@
-import axios from "axios";
-import { SUCCESS, NOT_LOGIN, ERROR, NO_ACCESS } from "utilities/codes";
+import axios from 'axios';
+import {
+  SUCCESS, NOT_LOGIN, ERROR, NO_ACCESS,
+} from 'utilities/codes';
 
 export function get(url, params) {
   return axios.get(url, { params }).then(
-    res => {
+    (res) => {
       const {
         data: { code, msg },
-        data
+        data,
       } = res;
       if (!isNaN(code) && code === SUCCESS) {
         // nothing to do here, just pass on data to UI
@@ -16,6 +18,6 @@ export function get(url, params) {
         // there's some error in processing the request
       }
     },
-    err => {}
+    (err) => {},
   );
 }
