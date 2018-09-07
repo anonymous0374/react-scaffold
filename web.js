@@ -11,12 +11,12 @@
  * date: 2018-07-30
  */
 
-const path = require("path");
-const express = require("express");
-const webpack = require("webpack");
-const dev = require("webpack-dev-middleware");
-const hot = require("webpack-hot-middleware");
-const webpackConfig = require("./webpack.config");
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const dev = require('webpack-dev-middleware');
+const hot = require('webpack-hot-middleware');
+const webpackConfig = require('./webpack.config');
 
 const compiler = webpack(webpackConfig);
 const app = express();
@@ -26,25 +26,23 @@ app.use(
   dev(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
-    index: "index.html"
-  })
+    index: 'index.html',
+  }),
 );
 app.use(hot(compiler));
 // the important part:
 // make ExpressJS always response with index.html(from the compilation)
 // on whatever path the client requires
-app.get("*", (req, res, next) => {
-  const filename = path.join(compiler.outputPath, "index.html");
+app.get('*', (req, res, next) => {
+  const filename = path.join(compiler.outputPath, 'index.html');
   compiler.outputFileSystem.readFile(filename, (err, result) => {
     if (err) {
       return next(err);
     }
-    res.set("content-type", "text/html");
+    res.set('content-type', 'text/html');
     res.send(result);
     res.end();
   });
 });
 
-app.listen(PORT, () =>
-  console.info(`Express web server is listening on port ${PORT}`)
-);
+app.listen(PORT, () => console.info(`Express web server is listening on port ${PORT}`));
