@@ -9,9 +9,8 @@ import { capitalizeFirstLetter } from 'utilities/string';
 const { Option } = Select;
 const { Item: FormItem } = Form;
 const PAYMENT_METHOD = ['cash', "yu'er bao", 'ant credit pay', 'credit card'];
-const PAYMENT_DIRECTION = ['Out', 'In'];
 
-class FlowEventLogger extends Component {
+class AssetsLogger extends Component {
   confirmHandler = () => {
     const {
       props: {
@@ -27,7 +26,7 @@ class FlowEventLogger extends Component {
       }
       values.direction ? (values.direction = 'out') : (values.direction = 'in');
       log(values);
-      toggleModal();
+      toggleModal(); // need to run this method asynchronously
       /*
       log(values).then(
         (res) => {
@@ -131,4 +130,4 @@ class FlowEventLogger extends Component {
   }
 }
 
-export default Form.create()(FlowEventLogger);
+export default Form.create()(AssetsLogger);

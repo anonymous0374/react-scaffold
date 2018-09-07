@@ -18,12 +18,7 @@ function Routes(props) {
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   const RestrictedCashflow = getRestrictedComponent(authenticated, Cashflow);
-  const historyArray = history.length > 0 ? JSON.parse(history) : ['/dashboard'];
-  const lastLocation = historyArray.slice(-1)[0];
-  const { location: { origin } } = window;
-  const lastPath = lastLocation.replace(origin, '');
-  console.info('react history: ', history, ' last locatoin: ', lastLocation);
-
+  
   return (
     <Router>
       <Switch>
