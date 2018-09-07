@@ -81,6 +81,12 @@ state, then compose them to make complex UIs.
     a. What are State and Props
       > Props are the input of a Component, and immutable. Component acts as a
       pure function with respect to the props and returns an React Element.
+        --> in this point of view, components are "controlled" by props, or,
+        you can control a component by controlling the props provided to it.
+        --> container components controls the props of the presentational
+        components, so presentational components are fully controlled.
+        --> if integrated with Redux, the Provider HOC from Redux works as the
+        container of the whole React App.
       > Component "owns" the State. Neither parent nor child components can know
       if a certain component is stateful or stateless, and they shouldn't care
       whether it is defined as a function or a class
