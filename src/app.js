@@ -1,5 +1,6 @@
 import ReactDom from 'react-dom';
 import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
 import './app.less';
 
 // to enable module hot reload(instead of page reload)
@@ -15,4 +16,7 @@ class App extends Component {
   }
 }
 
-ReactDom.render(<App />, document.getElementById('root'));
+const HotApp = hot(module)(App);
+
+
+ReactDom.render(<HotApp />, document.getElementById('root'));
