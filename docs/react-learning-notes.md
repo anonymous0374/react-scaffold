@@ -45,8 +45,8 @@ programming.
     State(State) altogether. (JSX looks like both HTML and JavaScript).
       > React Components are built on top of JSX.
       > Since JSX contains information on all View / Events / State, JSX codes
-    are easily get verbose(It works as both HTML and JavaScript).
-        --> therefore, in practice JSX codes are separated into:
+    are easily get verbose
+        --> therefore, in practice JSX codes are separated into two kinds:
           (1) "presentationals": fully controlled components, no inner states
           (2) "containers": work as container, that provide control(props and
         event handlers)to their children.
@@ -90,6 +90,7 @@ programming.
       > All components takes in props, and return React elements.
       > All components must act like pure functions with respect to their
       props.
+
 ### Component instance variables: State and Props, the Data Flows ONE-WAY Down
     a. What are State and Props
       > Props are the input of a Component, and immutable. Component acts as a
@@ -147,7 +148,7 @@ programming.
         >> componentDidCatch()
   ### Events, Forms(Controlled / uncontrolled components)
     a. Events are described(declaraed) within JSX expressions,just change the
-    format a bit: onclick="someHandler" --> onClick={this.props.someHandler}
+    format a bit: onclick="someHandler()" --> onClick={this.props.someHandler}
     b. React form:
       > In HTML, form elements such as <input>, <textarea>, and <select>
       typically maintain their own state and update it based on user input.
@@ -169,13 +170,13 @@ programming.
   ### Optimizing Performances
 
 ## Advanced Concepts
-  ### Context
-  ### Forwarding Refs
-  ### Refs and the DOM
-  ### HOC --> Higher Order Components
+### Context
+### Forwarding Refs
+### Refs and the DOM
+### HOC --> Higher Order Components
     A HOC composes the original component by wrapping it in a container
     component. A HOC is a pure function with zero side-effects.
-  ### getDerivedStateFromProps
+### getDerivedStateFromProps
     a. Controlled Components vs Uncontrolled Components
     The terms "controlled" and "uncontrolled" refer to where component's data
     lives. Data passed in as props can be thought of as controlled(because the
@@ -211,27 +212,28 @@ programming.
   [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
     This artical worths read a lot of times, and the principles and ideas should
     considered carefully. Here are some key points of it:
-  ### Steps(in sequence) to build a React app
-  1. Break the UI design into component hirarachies
-  2. Build a STATIC VERSION of the app
-    --> which will NOT use state but props only
-    --> because states are the frames(interactivity) of the app, static app does
-     NOT have frames.
-  3. Identify the minimal(yet complete) representation(schema) of one UI State
-    --> app interactivity are represented by State
-    --> React is all about one-way data flow down the component hirarchy, so
-    identify which component owns what state is very important.
-  4. Add Inverse Data Flow
-    --> Remember React is all about one-way data flow down the componet.
-    --> Any state is always owned by some specific component, and any data or UI
-     derived from that state can only affect components "below" them in the
-     tree.
-    --> So when an interactivity(or event)of child want to cause state of the
-    siblings or parent to change, it needs some "hooks" from components which
-    are ancestors of its siblings or parents(thus to maintain the data one-way
-    flow down principle).
-    --> The "hooks" are functions from the "ancestor" component which mutates
-    the state of itself, and calls this.setState() and that causes itself and
-    its decedent to re-render.
+### Steps(in sequence) to build a React app
+1. Break the UI design into component hirarachies
+2. Build a STATIC VERSION of the app
+  --> which will NOT use state but props only
+  --> because states are the frames(interactivity) of the app, static app does
+   NOT have frames.
+3. Identify the minimal(yet complete) representations(schema) of each UI State,
+and decide the hierarchy of these states
+  (1) app interactivity are represented by State
+  (2) React is all about one-way data flow down the component hirarchy, so
+identify which component owns what state is very important.
+4. Add Inverse Data Flow
+  --> Remember React is all about one-way data flow down the componet.
+  --> Any state is always owned by some specific component, and any data or UI
+   derived from that state can only affect components "below" them in the
+   tree.
+  --> So when an interactivity(or event)of child want to cause state of the
+  siblings or parent to change, it needs some "hooks" from components which
+  are ancestors of its siblings or parents(thus to maintain the data one-way
+  flow down principle).
+  --> The "hooks" are functions from the "ancestor" component which mutates
+  the state of itself, and calls this.setState() and that causes itself and
+  its decedent to re-render.
 
 
