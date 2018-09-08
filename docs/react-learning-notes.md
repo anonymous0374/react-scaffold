@@ -1,26 +1,38 @@
 # React Learnning Notes
 
 ## What is React?
-  React is a JS library for building User Interfaces:
-  ### User Interface coupled the aspects below:
-  1. How it looks --> rendering
-  2. How it interacts --> event handling
-  3. How it's divided into pieces and combined together
-    -->inner state, and props, extension, and composition
+  React is a JS library for building User Interfaces
+
+### User Interface couples the aspects altogether:
+1. How it looks --> rendering
+2. How it interacts --> event handling
+3. How it's divided into pieces and combined together -->inner state, and
+props, extension, and composition
+4. The life cycle: the constructs(birth), updates(growth), and destroyes(death)
+of the a piece of UI or the whole app.
 
 ## Characteristics of React?
-  1. Use "Declarative" syntax to describe a "View" for each "Frame"(State) of
-the web application.
---> Here declarative is an important concept
---> Declarative v.s. Imperative
-Declarative programming **describes** what you **want**, instead of writing
+### Declarative v.s. Imperative
+1. Declarative programming **describes** what you **want**, instead of writing
 a step-by-step statements on **how** you get it.
-  2. It's Component-Based, build encapsulated components that manage their own
-state, then compose them to make complex UIs.
-  3. ReactJS is all about data flow one-way down
+2. React uses "Declarative" syntax to describe a "View" for each "Frame"(State)
+of the web application.
+
+### It's Component-Based
+1. React builds encapsulated components that manage their own state, then
+compose them to make complex UIs.
+2. View from the whole system, you can see lots of components composited
+together, and props flows like waterfalls from top-down and sometimes join at
+arbitrary points but also flows down.
+3. But you cannot see any states in the whole picture, because states are hidden
+by components.
+
+### React is all about data flow one-way down
+1. React is all about data flow one-way down, this is the key to master React
+programming.
 
 ## Essential Concepts of React
-  ### JSX and React Element
+### JSX and React Element
     a. Why JSX?
       > React embraces the fact that user interface is inherently coupled with
     these matters:
@@ -51,7 +63,7 @@ state, then compose them to make complex UIs.
       you can use JSX inside of if statements and for loops, assign it to
       variables, accept it as arguments, and return it from functions.
     c. What are React elements?
-      > An React Element is created by an JSX expression, and describes what
+      > An React Element is created by an JSX expression, and "describes" what
       you want to see on the screen.
       > Unlike browser DOM elements:
         >> React elements are plain objects, they're cheap to create
@@ -59,7 +71,8 @@ state, then compose them to make complex UIs.
         >> React elements are immutable. Once you create an element, you can't
         change its children or attributes. An element is like a single frame in
         a movie: it represents the UI at a certain point in time.
-  ### Component and HOC(High Order Components)
+
+### Component and HOC(High Order Components)
     a. Why Components
       > React embraces the fact that rendering logic is inherently coupled with
       UI logic: how events are handled, how the state changes over time, and
@@ -77,7 +90,7 @@ state, then compose them to make complex UIs.
       > All components takes in props, and return React elements.
       > All components must act like pure functions with respect to their
       props.
-  ### Component instance variables: State and Props, the Data Flows ONE-WAY Down
+### Component instance variables: State and Props, the Data Flows ONE-WAY Down
     a. What are State and Props
       > Props are the input of a Component, and immutable. Component acts as a
       pure function with respect to the props and returns an React Element.
