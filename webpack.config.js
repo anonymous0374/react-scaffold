@@ -111,6 +111,7 @@ module.exports = {
       services: path.join(__dirname, 'src/services'),
       utilities: path.join(__dirname, 'src/utilities'),
       styles: path.join(__dirname, 'src/styles'),
+      libraries: path.join(__dirname, 'libraries'),
     },
   },
   plugins: [

@@ -5,8 +5,12 @@ import './style.less';
 export default class UserModal extends Component {
   constructor(props) {
     super(props);
+    const { props: { store: { user: { id } } } } = this;
+
+    console.info('this.props: ', props);
+
     this.state = {
-      user: {},
+      user: { id },
       dialog: null,
     };
   }
@@ -25,11 +29,13 @@ export default class UserModal extends Component {
   }
 
   openModal = () => {
-    this.state.dialog.showModal();
+    const { state: { dialog } } = this;
+    dialog.showModal();
   }
 
   closeModal = () => {
-    this.state.dialog.close();
+    const { state: { dialog } } = this;
+    dialog.close();
   }
 
   render() {

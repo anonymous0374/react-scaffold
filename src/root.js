@@ -15,4 +15,5 @@ class App extends Component {
   }
 }
 
+// separate hot(module)(App) from ReactDOM.render into different files
 export default hot(module)(App);
