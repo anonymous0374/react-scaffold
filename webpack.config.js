@@ -48,7 +48,21 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
+        use: [{ loader: 'style-loader' }, {
+          loader: 'css-loader',
+          options: {
+            paths: [
+              path.resolve(__dirname, 'node_modules'),
+            ],
+          },
+        }, {
+          loader: 'less-loader',
+          options: {
+            paths: [
+              path.resolve(__dirname, 'node_modules'),
+            ],
+          },
+        }],
       },
       {
         test: /\.css$/,
@@ -96,6 +110,8 @@ module.exports = {
       configs: path.join(__dirname, 'src/configs'),
       services: path.join(__dirname, 'src/services'),
       utilities: path.join(__dirname, 'src/utilities'),
+      styles: path.join(__dirname, 'src/styles'),
+      libraries: path.join(__dirname, 'libraries'),
     },
   },
   plugins: [
