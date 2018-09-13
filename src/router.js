@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router, Route, Switch, Redirect,
 } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
 import Login from 'containers/Auth';
 import Assets from 'containers/Assets';
@@ -9,6 +10,8 @@ import Register from 'containers/Register';
 import Dashboard from 'containers/Dashboard';
 import Cashflow from 'containers/Cashflow';
 import getRestrictedComponent from 'hocs/RestrictedComponent';
+
+const history = createHistory();
 
 function Routes(props) {
   const {
@@ -18,7 +21,7 @@ function Routes(props) {
 
   const RestrictedAssets = getRestrictedComponent(authenticated, Assets);
   const RestrictedCashflow = getRestrictedComponent(authenticated, Cashflow);
-  
+
   return (
     <Router>
       <Switch>

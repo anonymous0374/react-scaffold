@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "antd": "^3.9.2",
     "apollo-boost": "^0.1.13",
     "apollo-client": "^2.4.1",
     "axios": "^0.18.0",
