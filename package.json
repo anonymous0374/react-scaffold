@@ -15,14 +15,15 @@
     "axios": "^0.18.0",
     "dialog-polyfill": "^0.4.10",
     "graphql": "^14.0.2",
+    "history": "^4.7.2",
     "moment": "^2.22.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.6",
     "react-router-dom": "^4.3.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "react-hot-loader": "^4.3.6"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.0.0",
